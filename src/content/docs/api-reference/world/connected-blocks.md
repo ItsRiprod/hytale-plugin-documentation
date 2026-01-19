@@ -371,7 +371,7 @@ public class MyConnectedBlockRuleSet extends ConnectedBlockRuleSet {
 
 ## Related
 
-- [Block System](../blocks/overview.md) - Block types and states
-- [World System](overview.md) - World and chunk management
-- [Light Propagation](lighting.md) - Lighting system
+- [Block System](/api-reference/blocks/overview/) - Block types and states
+- [World System](/api-reference/entities/overview/) - World and chunk management
+- [Light Propagation](/api-reference/world/lighting/) - Lighting system
 

@@ -231,7 +231,7 @@ A large-scale region in world generation with distinct generation rules and biom
 
 ## See Also
 
-- [Plugin Manifest](../getting-started/plugin-manifest.md)
-- [ECS Overview](../core-concepts/ecs-overview.md)
-- [Event System](../core-concepts/event-system.md)
-- [Command System](../core-concepts/commands.md)
+- [Plugin Manifest](/getting-started/plugin-manifest/)
+- [ECS Overview](/core-concepts/ecs-overview/)
+- [Event System](/core-concepts/event-system/)
+- [Command System](/core-concepts/commands/)

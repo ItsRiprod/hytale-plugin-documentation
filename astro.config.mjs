@@ -2,6 +2,10 @@
 import { defineConfig } from 'astro/config';
 import starlight from '@astrojs/starlight';
 import cloudflare from '@astrojs/cloudflare';
+import starlightImageZoom from 'starlight-image-zoom';
+import starlightLinksValidator from 'starlight-links-validator';
+// Note: remark-mermaidjs requires Playwright which is incompatible with Cloudflare Workers
+// Mermaid diagrams will use client-side rendering instead
 
 // https://astro.build/config
 export default defineConfig({
@@ -39,16 +43,43 @@ export default defineConfig({
 		starlight({
 			title: 'Hytale Server Modding',
 			description: 'Comprehensive documentation for Hytale server plugin development',
+			logo: {
+				src: './public/logo.svg',
+				alt: 'Hytale Server Modding',
+			},
+			plugins: [starlightImageZoom(), starlightLinksValidator()],
 			social: [
 				{ icon: 'github', label: 'GitHub', href: 'https://github.com/hypixel-studios/hytale' },
 			],
 			favicon: '/favicon.svg',
 			head: [
 				{
+					tag: 'link',
+					attrs: {
+						rel: 'preconnect',
+						href: 'https://fonts.googleapis.com',
+					},
+				},
+				{
+					tag: 'link',
+					attrs: {
+						rel: 'preconnect',
+						href: 'https://fonts.gstatic.com',
+						crossorigin: true,
+					},
+				},
+				{
+					tag: 'link',
+					attrs: {
+						rel: 'stylesheet',
+						href: 'https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap',
+					},
+				},
+				{
 					tag: 'meta',
 					attrs: {
 						name: 'theme-color',
-						content: '#1a1a2e',
+						content: '#0a0f1a',
 					},
 				},
 				{

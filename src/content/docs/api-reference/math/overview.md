@@ -529,6 +529,6 @@ if (t >= 0) {
 
 ## Related
 
-- [Physics System](../physics/overview.md) - Uses math for physics
-- [Collision System](../physics/collision.md) - Box collision
-- [Entity System](../entities/overview.md) - Transform components
+- [Physics System](/api-reference/physics/overview/) - Uses math for physics
+- [Collision System](/api-reference/physics/collision/) - Box collision
+- [Entity System](/api-reference/entities/overview/) - Transform components

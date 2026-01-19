@@ -362,7 +362,7 @@ transform.setPosition(newPosition);
 
 ## Related
 
-- [Networking Overview](overview.md) - Packet system architecture
-- [Packet Types](packet-types.md) - All packet IDs
-- [Entity System](../entities/overview.md) - Entity components
-- [World System](../world/overview.md) - Chunk management
+- [Networking Overview](/api-reference/entities/overview/) - Packet system architecture
+- [Packet Types](/api-reference/networking/packet-types/) - All packet IDs
+- [Entity System](/api-reference/entities/overview/) - Entity components
+- [World System](/api-reference/world/overview/) - Chunk management

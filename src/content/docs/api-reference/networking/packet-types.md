@@ -432,5 +432,5 @@ Complete catalog of all 354 packet types in the Hytale protocol, organized by ca
 
 ## Related
 
-- [Networking Overview](overview.md) - Packet system architecture
-- [Event System](../../core-concepts/event-system.md) - Server events
+- [Networking Overview](/api-reference/entities/overview/) - Packet system architecture
+- [Event System](/core-concepts/event-system/) - Server events

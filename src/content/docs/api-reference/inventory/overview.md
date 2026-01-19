@@ -365,6 +365,6 @@ InventorySection section = container.toPacket();
 
 ## Related
 
-- [Item Assets](../assets/items.md) - Item type definitions
-- [Entity System](../entities/overview.md) - Player inventory access
-- [Events](../../core-concepts/event-system.md) - Container events
+- [Item Assets](/api-reference/assets/overview/) - Item type definitions
+- [Entity System](/api-reference/entities/overview/) - Player inventory access
+- [Events](/core-concepts/event-system/) - Container events

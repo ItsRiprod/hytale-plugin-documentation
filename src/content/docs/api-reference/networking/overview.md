@@ -387,6 +387,6 @@ Metrics include min, max, average, and 99th percentile over 1s, 1m, and 5m windo
 
 ## Related
 
-- [Event System](../../core-concepts/event-system.md) - Server events
-- [Entity System](../entities/overview.md) - Entity packets
-- [World System](../world/overview.md) - World packets
+- [Event System](/core-concepts/event-system/) - Server events
+- [Entity System](/api-reference/entities/overview/) - Entity packets
+- [World System](/api-reference/world/overview/) - World packets

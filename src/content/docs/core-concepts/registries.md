@@ -51,7 +51,7 @@ protected void setup() {
 
 Commands are automatically unregistered when the plugin shuts down.
 
-**See also:** [Command System](./commands.md)
+**See also:** [Command System](/core-concepts/commands/)
 
 ## Event Registry
 
@@ -102,7 +102,7 @@ Events are processed in priority order:
 
 You can also use raw `short` values for fine-grained control.
 
-**See also:** [Event System](./event-system.md)
+**See also:** [Event System](/core-concepts/event-system/)
 
 ## Entity Store Registry
 
@@ -147,7 +147,7 @@ protected void setup() {
 | `registerWorldEventType(Class)` | Register a world event type |
 | `registerSpatialResource(Supplier)` | Register spatial index resource |
 
-**See also:** [ECS Overview](./ecs-overview.md)
+**See also:** [ECS Overview](/core-concepts/ecs-overview/)
 
 ## Chunk Store Registry
 
@@ -224,7 +224,7 @@ protected void setup() {
 }
 ```
 
-**See also:** [Asset System](../api-reference/assets/overview.md)
+**See also:** [Asset System](/api-reference/assets/overview/)
 
 ## Client Feature Registry
 
@@ -349,7 +349,7 @@ The cleanup happens in reverse order of registration, ensuring proper dependency
 
 ## Related
 
-- [Plugin Lifecycle](../getting-started/plugin-lifecycle.md)
-- [Event System](./event-system.md)
-- [Command System](./commands.md)
-- [ECS Overview](./ecs-overview.md)
+- [Plugin Lifecycle](/getting-started/plugin-lifecycle/)
+- [Event System](/core-concepts/event-system/)
+- [Command System](/core-concepts/commands/)
+- [ECS Overview](/core-concepts/ecs-overview/)

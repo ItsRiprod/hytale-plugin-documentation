@@ -460,6 +460,6 @@ getEventRegistry().register(UseBlockEvent.class, event -> {
 
 ## Related
 
-- [Asset System](../assets/overview.md) - Asset loading
-- [World System](../world/overview.md) - World and chunks
-- [Events](../../core-concepts/event-system.md) - Block events
+- [Asset System](/api-reference/assets/overview/) - Asset loading
+- [World System](/api-reference/world/overview/) - World and chunks
+- [Events](/core-concepts/event-system/) - Block events

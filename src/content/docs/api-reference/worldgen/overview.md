@@ -525,6 +525,6 @@ public interface MetricProvider {
 
 ## Related
 
-- [World System](../world/overview.md) - World management
-- [Block System](../blocks/overview.md) - Block types
-- [Asset System](../assets/overview.md) - Prefab assets
+- [World System](/api-reference/world/overview/) - World management
+- [Block System](/api-reference/blocks/overview/) - Block types
+- [Asset System](/api-reference/assets/overview/) - Prefab assets

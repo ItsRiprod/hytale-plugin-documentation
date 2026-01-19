@@ -309,7 +309,7 @@ Options for intelligent item placement:
 
 ## Related
 
-- [Inventory System](../inventory/overview.md) - Full inventory API
-- [Entity System](overview.md) - Player entity
-- [Item System](../items/overview.md) - Item types and stacks
+- [Inventory System](/api-reference/inventory/overview/) - Full inventory API
+- [Entity System](/api-reference/entities/overview/) - Player entity
+- [Item System](/api-reference/assets/overview/) - Item types and stacks
 

@@ -368,7 +368,7 @@ Common built-in effects (defined in game assets):
 
 ## Related
 
-- [Entity System](overview.md) - Entity management
-- [Component Catalog](../ecs/component-catalog.md) - ECS components
-- [Knockback System](knockback.md) - Knockback mechanics
+- [Entity System](/api-reference/entities/overview/) - Entity management
+- [Component Catalog](/api-reference/ecs/component-catalog/) - ECS components
+- [Knockback System](/api-reference/entities/knockback/) - Knockback mechanics
 

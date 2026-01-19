@@ -277,7 +277,7 @@ public class PhysicsExample {
 
 ## Related Documentation
 
-- [Collision System](collision.md) - Collision detection details
-- [Hitbox System](hitboxes.md) - Hitbox configuration
-- [Entity Movement](movement.md) - Velocity and movement
-- [Entity System](../entities/overview.md) - Entity components
+- [Collision System](/api-reference/physics/collision/) - Collision detection details
+- [Hitbox System](/api-reference/physics/hitboxes/) - Hitbox configuration
+- [Entity Movement](/api-reference/physics/movement/) - Velocity and movement
+- [Entity System](/api-reference/entities/overview/) - Entity components

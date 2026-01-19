@@ -286,7 +286,7 @@ knockback.setVelocity(adjustedVelocity);
 
 ## Related
 
-- [Effects System](effects.md) - Status effects
-- [Physics System](../physics/overview.md) - Velocity and movement
-- [Entity System](overview.md) - Entity management
+- [Effects System](/api-reference/entities/effects/) - Status effects
+- [Physics System](/api-reference/physics/overview/) - Velocity and movement
+- [Entity System](/api-reference/entities/overview/) - Entity management
 

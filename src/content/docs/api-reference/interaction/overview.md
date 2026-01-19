@@ -351,7 +351,7 @@ When starting an interaction while another is running:
 
 ## Related
 
-- [Block Tracking](block-tracking.md) - Track block placements
-- [Custom Interactions](custom-interactions.md) - Create custom interactions
-- [Entity System](../entities/overview.md) - Entity management
+- [Block Tracking](/api-reference/interaction/block-tracking/) - Track block placements
+- [Custom Interactions](/api-reference/interaction/custom-interactions/) - Create custom interactions
+- [Entity System](/api-reference/entities/overview/) - Entity management
 

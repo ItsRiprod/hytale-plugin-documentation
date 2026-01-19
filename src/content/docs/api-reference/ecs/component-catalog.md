@@ -280,6 +280,6 @@ WorldChunk (ChunkStore)
 
 ## Related
 
-- [ECS Overview](../../core-concepts/ecs-overview.md) - ECS architecture
-- [Registries](../../core-concepts/registries.md) - Component registration
-- [Entity System](../entities/overview.md) - Entity management
+- [ECS Overview](/core-concepts/ecs-overview/) - ECS architecture
+- [Registries](/core-concepts/registries/) - Component registration
+- [Entity System](/api-reference/entities/overview/) - Entity management

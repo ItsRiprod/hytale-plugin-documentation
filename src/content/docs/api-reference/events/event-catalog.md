@@ -405,6 +405,6 @@ getEventRegistry().register(PlayerChatEvent.class,
 
 ## Related
 
-- [Event System](../../core-concepts/event-system.md) - Event system overview
-- [Component Catalog](../ecs/component-catalog.md) - ECS components
-- [Permission System](../permissions/overview.md) - Permission events
+- [Event System](/core-concepts/event-system/) - Event system overview
+- [Component Catalog](/api-reference/ecs/component-catalog/) - ECS components
+- [Permission System](/api-reference/permissions/overview/) - Permission events

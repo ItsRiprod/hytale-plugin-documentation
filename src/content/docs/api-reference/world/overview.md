@@ -446,6 +446,6 @@ CompletableFuture.runAsync(() -> {
 
 ## Related
 
-- [ECS Overview](../../core-concepts/ecs-overview.md) - Entity Component System
-- [Entity System](../entities/overview.md) - Entity management
-- [Block Types](../assets/blocks.md) - Block type assets
+- [ECS Overview](/core-concepts/ecs-overview/) - Entity Component System
+- [Entity System](/api-reference/entities/overview/) - Entity management
+- [Block Types](/api-reference/blocks/overview/) - Block type assets

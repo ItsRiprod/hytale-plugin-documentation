@@ -276,7 +276,7 @@ protected void setup() {
 
 ## Related
 
-- [Plugin Manifest](./plugin-manifest.md) - Configure your plugin's metadata
-- [First Plugin Tutorial](./first-plugin.md) - Build your first plugin
-- [Event System](../core-concepts/event-system.md) - Register event listeners
-- [Command System](../core-concepts/commands.md) - Register commands
+- [Plugin Manifest](/getting-started/plugin-manifest/) - Configure your plugin's metadata
+- [First Plugin Tutorial](/getting-started/first-plugin/) - Build your first plugin
+- [Event System](/core-concepts/event-system/) - Register event listeners
+- [Command System](/core-concepts/commands/) - Register commands

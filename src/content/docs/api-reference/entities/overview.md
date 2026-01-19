@@ -372,6 +372,6 @@ public class MySystem extends EntityTickingSystem<EntityStore> {
 
 ## Related
 
-- [ECS Overview](../../core-concepts/ecs-overview.md) - Entity Component System
-- [World System](../world/overview.md) - World and entity store
-- [Event System](../../core-concepts/event-system.md) - Entity events
+- [ECS Overview](/core-concepts/ecs-overview/) - Entity Component System
+- [World System](/api-reference/world/overview/) - World and entity store
+- [Event System](/core-concepts/event-system/) - Entity events

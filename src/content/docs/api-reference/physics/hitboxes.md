@@ -352,7 +352,7 @@ Hitbox changes are synchronized to clients:
 
 ## Related
 
-- [Physics Overview](overview.md) - Physics system
-- [Collision System](collision.md) - Collision detection
-- [Entity System](../entities/overview.md) - Entity components
-- [Block System](../blocks/overview.md) - Block hitboxes
+- [Physics Overview](/api-reference/entities/overview/) - Physics system
+- [Collision System](/api-reference/physics/collision/) - Collision detection
+- [Entity System](/api-reference/entities/overview/) - Entity components
+- [Block System](/api-reference/blocks/overview/) - Block hitboxes

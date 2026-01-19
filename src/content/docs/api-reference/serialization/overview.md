@@ -442,6 +442,6 @@ MyConfig config = MyConfig.CODEC.decodeJson(reader, ExtraInfo.get());
 
 ## Related
 
-- [Asset System](../assets/overview.md) - Asset serialization
-- [Plugin Manifest](../../getting-started/plugin-manifest.md) - Manifest format
-- [Registries](../../core-concepts/registries.md) - Codec registration
+- [Asset System](/api-reference/assets/overview/) - Asset serialization
+- [Plugin Manifest](/getting-started/plugin-manifest/) - Manifest format
+- [Registries](/core-concepts/registries/) - Codec registration

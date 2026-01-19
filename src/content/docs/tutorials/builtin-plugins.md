@@ -457,7 +457,7 @@ protected void setup() {
 
 ## Related
 
-- [Plugin Lifecycle](../getting-started/plugin-lifecycle.md) - Plugin basics
-- [Event System](../core-concepts/event-system.md) - Events
-- [Commands](../core-concepts/commands.md) - Command system
-- [ECS Overview](../core-concepts/ecs-overview.md) - Components and systems
+- [Plugin Lifecycle](/getting-started/plugin-lifecycle/) - Plugin basics
+- [Event System](/core-concepts/event-system/) - Events
+- [Commands](/core-concepts/commands/) - Command system
+- [ECS Overview](/core-concepts/ecs-overview/) - Components and systems

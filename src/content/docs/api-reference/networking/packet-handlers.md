@@ -337,6 +337,6 @@ public class ChatFilterHandler implements SubPacketHandler {
 
 ## Related
 
-- [Networking Overview](overview.md) - Packet system architecture
-- [Packet Types](packet-types.md) - All packet type IDs
-- [Event System](../../core-concepts/event-system.md) - Server events
+- [Networking Overview](/api-reference/entities/overview/) - Packet system architecture
+- [Packet Types](/api-reference/networking/packet-types/) - All packet type IDs
+- [Event System](/core-concepts/event-system/) - Server events

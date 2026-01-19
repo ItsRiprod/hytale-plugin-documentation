@@ -270,7 +270,7 @@ The client combines both light sources for final illumination.
 
 ## Related
 
-- [Light Propagation](lighting.md) - Chunk-based lighting
-- [Entity System](../entities/overview.md) - Entity management
-- [ECS Overview](../../core-concepts/ecs-overview.md) - Component architecture
+- [Light Propagation](/api-reference/world/lighting/) - Chunk-based lighting
+- [Entity System](/api-reference/entities/overview/) - Entity management
+- [ECS Overview](/core-concepts/ecs-overview/) - Component architecture
 

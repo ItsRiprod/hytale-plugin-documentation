@@ -408,6 +408,6 @@ All event registrations made through `getEventRegistry()` are automatically unre
 
 ## Related
 
-- [Plugin Registries](./registries.md) - All available registries
-- [Plugin Lifecycle](../getting-started/plugin-lifecycle.md) - Registration timing
-- [Built-in Events Catalog](../appendix/builtin-events.md) - Complete event reference
+- [Plugin Registries](/core-concepts/registries/) - All available registries
+- [Plugin Lifecycle](/getting-started/plugin-lifecycle/) - Registration timing
+- [Built-in Events Catalog](/appendix/glossary/) - Complete event reference

@@ -403,6 +403,6 @@ The default provider stores permissions in `permissions.json` in the universe fo
 
 ## Related
 
-- [Command System](../../core-concepts/commands.md) - Command permissions
-- [Event System](../../core-concepts/event-system.md) - Permission events
-- [Plugin Lifecycle](../../getting-started/plugin-lifecycle.md) - Provider registration
+- [Command System](/core-concepts/commands/) - Command permissions
+- [Event System](/core-concepts/event-system/) - Permission events
+- [Plugin Lifecycle](/getting-started/plugin-lifecycle/) - Provider registration

@@ -286,7 +286,7 @@ perms.addUserToGroup(playerUuid, "vip");
 
 ## Related
 
-- [Permission System](../permissions/overview.md) - Full permission API
-- [Commands](../../core-concepts/commands.md) - Command system
-- [Event System](../../core-concepts/event-system.md) - Event handling
+- [Permission System](/api-reference/permissions/overview/) - Full permission API
+- [Commands](/core-concepts/commands/) - Command system
+- [Event System](/core-concepts/event-system/) - Event handling
 

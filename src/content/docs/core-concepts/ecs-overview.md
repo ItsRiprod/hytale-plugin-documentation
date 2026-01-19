@@ -508,6 +508,6 @@ public class DamageOverTimeSystem extends EntityTickingSystem<EntityStore> {
 
 ## Related
 
-- [Plugin Registries](./registries.md) - ECS registration methods
-- [Entity System](../api-reference/entities/overview.md) - Entity types and spawning
-- [World System](../api-reference/world/overview.md) - World and chunk management
+- [Plugin Registries](/core-concepts/registries/) - ECS registration methods
+- [Entity System](/api-reference/entities/overview/) - Entity types and spawning
+- [World System](/api-reference/world/overview/) - World and chunk management

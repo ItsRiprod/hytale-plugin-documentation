@@ -381,6 +381,6 @@ public static class Module {
 
 ## Related
 
-- [Plugin Manifest](../../getting-started/plugin-manifest.md) - Plugin config
-- [World System](../world/overview.md) - World management
-- [Permission System](../permissions/overview.md) - Permission config
+- [Plugin Manifest](/getting-started/plugin-manifest/) - Plugin config
+- [World System](/api-reference/world/overview/) - World management
+- [Permission System](/api-reference/permissions/overview/) - Permission config

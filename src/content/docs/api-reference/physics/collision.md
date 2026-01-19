@@ -427,6 +427,6 @@ public boolean isOnGround(Box entityBox, Vector3d position,
 
 ## Related
 
-- [Physics Overview](overview.md) - Physics system architecture
-- [Hitbox System](hitboxes.md) - Entity hitboxes
-- [Block System](../blocks/overview.md) - Block types and materials
+- [Physics Overview](/api-reference/entities/overview/) - Physics system architecture
+- [Hitbox System](/api-reference/physics/hitboxes/) - Entity hitboxes
+- [Block System](/api-reference/blocks/overview/) - Block types and materials

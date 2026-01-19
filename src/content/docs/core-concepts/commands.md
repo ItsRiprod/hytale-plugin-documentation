@@ -607,6 +607,6 @@ public class SpawnCommand extends AbstractPlayerCommand {
 
 ## Related
 
-- [Plugin Registries](./registries.md) - Command registration
-- [Plugin Lifecycle](../getting-started/plugin-lifecycle.md) - When to register commands
-- [Permissions](./permissions.md) - Permission system
+- [Plugin Registries](/core-concepts/registries/) - Command registration
+- [Plugin Lifecycle](/getting-started/plugin-lifecycle/) - When to register commands
+- [Permissions](/api-reference/permissions/overview/) - Permission system

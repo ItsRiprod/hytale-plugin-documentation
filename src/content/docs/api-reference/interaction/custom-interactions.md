@@ -408,7 +408,7 @@ rules.blockedBy = Set.of("silence");
 
 ## Related
 
-- [Interaction System](overview.md) - System overview
-- [Block Tracking](block-tracking.md) - Track block placements
-- [Serialization](../serialization/overview.md) - Codec system
+- [Interaction System](/api-reference/entities/overview/) - System overview
+- [Block Tracking](/api-reference/interaction/block-tracking/) - Track block placements
+- [Serialization](/api-reference/serialization/overview/) - Codec system
 

@@ -361,7 +361,7 @@ Built-in lighting commands:
 
 ## Related
 
-- [Dynamic Lighting](dynamic-lighting.md) - Entity light sources
-- [World System](overview.md) - Chunk management
-- [Block System](../blocks/overview.md) - Block light properties
+- [Dynamic Lighting](/api-reference/world/dynamic-lighting/) - Entity light sources
+- [World System](/api-reference/entities/overview/) - Chunk management
+- [Block System](/api-reference/blocks/overview/) - Block light properties
 

@@ -329,6 +329,6 @@ A fully-featured manifest for a production plugin:
 
 ## Related
 
-- [Plugin Lifecycle](./plugin-lifecycle.md) - Understanding plugin states and lifecycle methods
-- [JavaPlugin Class](../api-reference/plugin/java-plugin.md) - The main plugin base class
-- [First Plugin Tutorial](./first-plugin.md) - Create your first plugin step by step
+- [Plugin Lifecycle](/getting-started/plugin-lifecycle/) - Understanding plugin states and lifecycle methods
+- [JavaPlugin Class](/api-reference/entities/overview/) - The main plugin base class
+- [First Plugin Tutorial](/getting-started/first-plugin/) - Create your first plugin step by step

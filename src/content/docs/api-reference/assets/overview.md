@@ -380,7 +380,7 @@ All 35 asset types organized by category:
 
 ## Related
 
-- [Block Types](./blocks.md) - Detailed block documentation
-- [Items](./items.md) - Detailed item documentation
-- [Sounds](./sounds.md) - Audio system
-- [Particles](./particles.md) - Particle system
+- [Block Types](/api-reference/blocks/overview/) - Detailed block documentation
+- [Items](/api-reference/assets/overview/) - Detailed item documentation
+- [Sounds](/api-reference/assets/overview/) - Audio system
+- [Particles](/api-reference/assets/overview/) - Particle system

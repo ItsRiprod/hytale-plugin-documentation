@@ -346,7 +346,7 @@ group.setDissolved(true);
 
 ## Related
 
-- [Entity System](overview.md) - Entity management
-- [ECS Overview](../../core-concepts/ecs-overview.md) - Component system
-- [Component Catalog](../ecs/component-catalog.md) - All components
+- [Entity System](/api-reference/entities/overview/) - Entity management
+- [ECS Overview](/core-concepts/ecs-overview/) - Component system
+- [Component Catalog](/api-reference/ecs/component-catalog/) - All components
 

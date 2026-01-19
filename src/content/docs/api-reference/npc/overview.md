@@ -499,6 +499,6 @@ NPCs are configured through role assets:
 
 ## Related
 
-- [Entity System](../entities/overview.md) - Base entity documentation
-- [ECS Overview](../../core-concepts/ecs-overview.md) - Component system
-- [Events](../../core-concepts/event-system.md) - Event handling
+- [Entity System](/api-reference/entities/overview/) - Base entity documentation
+- [ECS Overview](/core-concepts/ecs-overview/) - Component system
+- [Events](/core-concepts/event-system/) - Event handling

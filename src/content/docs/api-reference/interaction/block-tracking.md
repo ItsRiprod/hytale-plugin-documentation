@@ -275,7 +275,7 @@ Both components serialize with entity/chunk data:
 
 ## Related
 
-- [Interaction System](overview.md) - Interaction overview
-- [Event System](../../core-concepts/event-system.md) - Block events
-- [Block System](../blocks/overview.md) - Block types
+- [Interaction System](/api-reference/entities/overview/) - Interaction overview
+- [Event System](/core-concepts/event-system/) - Block events
+- [Block System](/api-reference/blocks/overview/) - Block types
 

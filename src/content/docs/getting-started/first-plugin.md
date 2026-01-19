@@ -17,7 +17,7 @@ A "Greeter" plugin that:
 
 ## Prerequisites
 
-- Development environment set up (see [Setup Guide](./setup.md))
+- Development environment set up (see [Setup Guide](/getting-started/setup/))
 - Basic Java knowledge
 - Hytale server for testing
 
@@ -461,7 +461,7 @@ getLogger().at(Level.SEVERE).withCause(exception).log("Error occurred");
 
 ## Next Steps
 
-- [Event System](../core-concepts/event-system.md) - Deep dive into events
-- [Command System](../core-concepts/commands.md) - Advanced command features
-- [ECS Overview](../core-concepts/ecs-overview.md) - Entity Component System
-- [Built-in Events](../appendix/builtin-events.md) - All available events
+- [Event System](/core-concepts/event-system/) - Deep dive into events
+- [Command System](/core-concepts/commands/) - Advanced command features
+- [ECS Overview](/core-concepts/ecs-overview/) - Entity Component System
+- [Built-in Events](/appendix/glossary/) - All available events

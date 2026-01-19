@@ -365,6 +365,6 @@ Vector3d renderVelocity = velocity.getClientVelocity();
 
 ## Related
 
-- [Physics Overview](overview.md) - Physics system architecture
-- [Collision System](collision.md) - Collision detection
-- [Entity System](../entities/overview.md) - Entity components
+- [Physics Overview](/api-reference/entities/overview/) - Physics system architecture
+- [Collision System](/api-reference/physics/collision/) - Collision detection
+- [Entity System](/api-reference/entities/overview/) - Entity components

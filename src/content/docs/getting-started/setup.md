@@ -309,6 +309,6 @@ mvn package
 
 ## Next Steps
 
-- [First Plugin Tutorial](./first-plugin.md) - Complete walkthrough
-- [Plugin Manifest](./plugin-manifest.md) - Manifest configuration
-- [Plugin Lifecycle](./plugin-lifecycle.md) - Understanding lifecycle
+- [First Plugin Tutorial](/getting-started/first-plugin/) - Complete walkthrough
+- [Plugin Manifest](/getting-started/plugin-manifest/) - Manifest configuration
+- [Plugin Lifecycle](/getting-started/plugin-lifecycle/) - Understanding lifecycle
