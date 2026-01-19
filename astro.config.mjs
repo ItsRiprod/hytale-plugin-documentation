@@ -1,27 +1,37 @@
 // @ts-check
 import { defineConfig } from 'astro/config';
 import starlight from '@astrojs/starlight';
+import cloudflare from '@astrojs/cloudflare';
 
 // https://astro.build/config
 export default defineConfig({
 	// Custom domain
 	site: 'https://doctale.dev',
 
-	// Static output for Cloudflare Pages (optimal for documentation)
-	output: 'static',
+	// Server output for Cloudflare Workers
+	output: 'server',
+
+	// Cloudflare Workers adapter
+	adapter: cloudflare({
+		imageService: 'passthrough',
+		platformProxy: {
+			enabled: true,
+		},
+	}),
 
 	// Build configuration
 	build: {
-		// Cloudflare Pages serves from root
 		assets: '_astro',
 	},
 
 	// Vite configuration for Cloudflare compatibility
 	vite: {
 		build: {
-			// Ensure compatibility with Cloudflare's environment
 			target: 'esnext',
 			cssTarget: 'chrome100',
+		},
+		ssr: {
+			external: ['node:async_hooks'],
 		},
 	},
 
@@ -41,7 +51,6 @@ export default defineConfig({
 						content: '#1a1a2e',
 					},
 				},
-				// Open Graph meta tags for social sharing
 				{
 					tag: 'meta',
 					attrs: {
@@ -60,8 +69,8 @@ export default defineConfig({
 			customCss: [
 				'./src/styles/custom.css',
 			],
-			// Enable built-in search
-			pagefind: true,
+			// Disable pagefind for SSR (not compatible with Workers)
+			pagefind: false,
 			sidebar: [
 				{
 					label: 'Getting Started',

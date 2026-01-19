@@ -7,10 +7,9 @@
     "dev": "astro dev",
     "start": "astro dev",
     "build": "astro build",
-    "preview": "astro preview",
+    "preview": "wrangler dev",
     "astro": "astro",
-    "cf:preview": "wrangler pages dev dist",
-    "cf:deploy": "wrangler pages deploy dist --project-name=doctale --commit-dirty=true",
+    "deploy": "wrangler deploy",
     "cf:login": "wrangler login"
   },
   "dependencies": {
