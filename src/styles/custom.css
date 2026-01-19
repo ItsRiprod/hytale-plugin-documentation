@@ -1,0 +1,164 @@
+/* Hytale Server Modding Documentation - Custom Theme */
+
+:root {
+	/* Hytale-inspired color palette */
+	--sl-color-accent-low: #1a2744;
+	--sl-color-accent: #3b82f6;
+	--sl-color-accent-high: #93c5fd;
+
+	/* Dark theme adjustments */
+	--sl-color-bg: #0f172a;
+	--sl-color-bg-nav: #1e293b;
+	--sl-color-bg-sidebar: #1e293b;
+
+	/* Text colors */
+	--sl-color-white: #f8fafc;
+	--sl-color-gray-1: #f1f5f9;
+	--sl-color-gray-2: #e2e8f0;
+	--sl-color-gray-3: #cbd5e1;
+	--sl-color-gray-4: #94a3b8;
+	--sl-color-gray-5: #64748b;
+	--sl-color-gray-6: #475569;
+
+	/* Code blocks */
+	--sl-color-text-code: #e2e8f0;
+	--sl-color-bg-inline-code: #334155;
+
+	/* Borders */
+	--sl-color-hairline: #334155;
+	--sl-color-hairline-light: #1e293b;
+}
+
+/* Light theme overrides */
+:root[data-theme='light'] {
+	--sl-color-accent-low: #dbeafe;
+	--sl-color-accent: #2563eb;
+	--sl-color-accent-high: #1e40af;
+
+	--sl-color-bg: #ffffff;
+	--sl-color-bg-nav: #f8fafc;
+	--sl-color-bg-sidebar: #f8fafc;
+
+	--sl-color-text-code: #1e293b;
+	--sl-color-bg-inline-code: #f1f5f9;
+
+	--sl-color-hairline: #e2e8f0;
+	--sl-color-hairline-light: #f1f5f9;
+}
+
+/* Custom font */
+:root {
+	--sl-font: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+	--sl-font-mono: 'JetBrains Mono', ui-monospace, 'Cascadia Code', 'Source Code Pro', Menlo, monospace;
+}
+
+/* Smoother scrolling */
+html {
+	scroll-behavior: smooth;
+}
+
+/* Enhanced code blocks */
+pre {
+	border-radius: 0.5rem !important;
+	border: 1px solid var(--sl-color-hairline) !important;
+}
+
+.expressive-code {
+	margin: 1.5rem 0 !important;
+}
+
+/* Table styling */
+table {
+	border-radius: 0.5rem;
+	overflow: hidden;
+	border: 1px solid var(--sl-color-hairline);
+}
+
+th {
+	background: var(--sl-color-bg-nav);
+	font-weight: 600;
+}
+
+/* Sidebar enhancements */
+.sidebar-content {
+	padding-bottom: 2rem;
+}
+
+/* Better link styling */
+a {
+	text-decoration-thickness: 1px;
+	text-underline-offset: 2px;
+}
+
+/* Cards and callouts */
+.sl-markdown-content aside {
+	border-radius: 0.5rem;
+}
+
+/* Hero section enhancements */
+.hero {
+	padding-block: 4rem;
+}
+
+/* Badge styling for API reference */
+.badge {
+	display: inline-flex;
+	align-items: center;
+	padding: 0.125rem 0.5rem;
+	border-radius: 9999px;
+	font-size: 0.75rem;
+	font-weight: 500;
+	text-transform: uppercase;
+	letter-spacing: 0.025em;
+}
+
+.badge-verified {
+	background: #059669;
+	color: white;
+}
+
+.badge-incomplete {
+	background: #d97706;
+	color: white;
+}
+
+.badge-needs-review {
+	background: #6366f1;
+	color: white;
+}
+
+/* Java code highlighting enhancements */
+.language-java .token.annotation {
+	color: #fbbf24;
+}
+
+.language-java .token.keyword {
+	color: #f472b6;
+}
+
+.language-java .token.class-name {
+	color: #67e8f9;
+}
+
+/* Method signature styling */
+.method-signature {
+	font-family: var(--sl-font-mono);
+	background: var(--sl-color-bg-inline-code);
+	padding: 0.5rem 1rem;
+	border-radius: 0.25rem;
+	overflow-x: auto;
+}
+
+/* Package path styling */
+.package-path {
+	font-family: var(--sl-font-mono);
+	color: var(--sl-color-gray-4);
+	font-size: 0.875rem;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+	.hero {
+		padding-block: 2rem;
+	}
+}

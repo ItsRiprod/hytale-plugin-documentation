@@ -1,0 +1,70 @@
+---
+title: Hytale Server Modding
+description: Comprehensive documentation for developing server-side plugins for Hytale.
+template: splash
+hero:
+  tagline: Build powerful server plugins with Java. Comprehensive API documentation, tutorials, and examples.
+  actions:
+    - text: Get Started
+      link: /getting-started/setup/
+      icon: right-arrow
+    - text: API Reference
+      link: /api-reference/world/overview/
+      icon: document
+      variant: minimal
+---
+
+import { Card, CardGrid } from '@astrojs/starlight/components';
+
+## Start Building
+
+<CardGrid stagger>
+	<Card title="Setup Your Environment" icon="laptop">
+		Install Java 21, configure your build tool, and create your first plugin project.
+		[Setup Guide](/getting-started/setup/)
+	</Card>
+	<Card title="Create Your First Plugin" icon="rocket">
+		Walk through building a complete plugin from scratch with events, commands, and more.
+		[First Plugin Tutorial](/getting-started/first-plugin/)
+	</Card>
+	<Card title="Understand the ECS" icon="puzzle">
+		Learn how Hytale's Entity Component System works and how to extend it.
+		[ECS Overview](/core-concepts/ecs-overview/)
+	</Card>
+	<Card title="Browse the API" icon="open-book">
+		Explore the complete API reference with classes, methods, and code examples.
+		[API Reference](/api-reference/world/overview/)
+	</Card>
+</CardGrid>
+
+## Core Systems
+
+<CardGrid>
+	<Card title="Event System" icon="lightning">
+		Subscribe to game events with priority ordering and cancellation support.
+		[Learn more](/core-concepts/event-system/)
+	</Card>
+	<Card title="Commands" icon="terminal">
+		Create custom commands with argument parsing, permissions, and tab completion.
+		[Learn more](/core-concepts/commands/)
+	</Card>
+	<Card title="World API" icon="earth">
+		Manipulate blocks, chunks, lighting, and world generation.
+		[Learn more](/api-reference/world/overview/)
+	</Card>
+	<Card title="Entities" icon="star">
+		Work with players, NPCs, creatures, and custom entity types.
+		[Learn more](/api-reference/entities/overview/)
+	</Card>
+</CardGrid>
+
+## Documentation Status
+
+This documentation is derived from Hytale server source code analysis. While comprehensive, it is community-maintained and may contain inaccuracies. Always verify against the actual API when possible.
+
+| Section | Status |
+|---------|--------|
+| Getting Started | Verified |
+| Core Concepts | Verified |
+| API Reference | Verified |
+| Tutorials | In Progress |

@@ -1,319 +1,275 @@
 # Hytale Server Modding Documentation - Contributor Guide
 
-## Current Project Phase: Refinement
+## Project Overview
 
-The initial documentation pass is complete. The focus is now on:
-1. **Accuracy verification** - Confirming existing docs against source code
-2. **Gap filling** - Documenting missing systems (networking, permissions, codecs, physics)
-3. **Quality improvement** - Ensuring code examples compile and cross-references work
+This is an **Astro-powered documentation wiki** for Hytale server plugin development. The documentation is built using [Starlight](https://starlight.astro.build/), Astro's official documentation theme.
+
+### Quick Commands
+
+```bash
+npm run dev      # Start dev server with hot reload (localhost:4321)
+npm run build    # Build production site to dist/
+npm run preview  # Preview production build locally
+```
+
+---
+
+## Project Structure
+
+```
+docs/
+├── astro.config.mjs          # Site config, sidebar navigation
+├── package.json              # Dependencies
+├── src/
+│   ├── content/
+│   │   └── docs/             # ALL documentation lives here
+│   │       ├── getting-started/
+│   │       ├── core-concepts/
+│   │       ├── api-reference/
+│   │       ├── tutorials/
+│   │       └── appendix/
+│   ├── styles/
+│   │   └── custom.css        # Hytale theme customization
+│   └── content.config.ts     # Content schema
+├── public/                   # Static assets (favicon, images)
+├── extracted/                # Source code reference (~5,218 Java files)
+├── CLAUDE.md                 # This file
+└── TODO.md                   # Task tracking
+```
+
+---
+
+## Documentation Workflow
+
+### Adding New Documentation
+
+1. **Create the markdown file** in `src/content/docs/`:
+   ```bash
+   touch src/content/docs/api-reference/new-topic/overview.md
+   ```
+
+2. **Add required frontmatter**:
+   ```markdown
+   ---
+   title: "Your Page Title"
+   ---
+
+   <!-- [VERIFIED: 2026-01-19] -->
+
+   # Your Page Title
+
+   Content here...
+   ```
+
+3. **Update sidebar** in `astro.config.mjs`:
+   ```javascript
+   {
+     label: 'New Topic',
+     collapsed: true,
+     items: [
+       { label: 'Overview', slug: 'api-reference/new-topic/overview' },
+     ],
+   },
+   ```
+
+4. **Build and verify**:
+   ```bash
+   npm run build
+   ```
+
+### Editing Existing Documentation
+
+1. Find the file in `src/content/docs/`
+2. Edit the markdown content
+3. Run `npm run dev` to preview changes
+4. Build to verify: `npm run build`
+
+---
 
 ## Source Material
 
 **Location:** `extracted/com/hypixel/hytale/`
 **Total Files:** ~5,218 Java files across ~932 packages
 
-### Package Reference
+### Key Package Reference
 
-| Package | Purpose | Documentation Status |
-|---------|---------|---------------------|
-| `server/core/plugin/` | Plugin system | Exists, needs verification |
-| `server/core/event/` | Events | Exists, needs verification |
-| `server/core/command/` | Commands | Exists, needs verification |
-| `component/` | ECS | Exists, needs verification |
-| `server/core/universe/` | World system | Exists, needs verification |
-| `protocol/` | Networking | **Missing** |
-| `server/core/permissions/` | Permissions | **Missing** |
-| `codec/` | Serialization | **Missing** |
-| `server/core/modules/physics/` | Physics | **Missing** |
-| `math/` | Math utilities | **Missing** |
-| `builtin/` | Reference plugins | Partial |
-
----
-
-## Completion Criteria
-
-### For a Document to be Complete
-
-Every documentation file must satisfy ALL of these:
-
-**Accuracy:**
-- [ ] All class names exist in source at stated package
-- [ ] All method signatures match source exactly
-- [ ] All enum values match source exactly
-- [ ] Code examples have been tested to compile
-
-**Completeness:**
-- [ ] Package location stated at top
-- [ ] Class hierarchy documented (extends/implements)
-- [ ] All public constructors documented
-- [ ] All public methods documented with signatures
-- [ ] Return types and parameter types specified
-
-**Usability:**
-- [ ] Clear one-sentence description at top
-- [ ] At least one practical code example
-- [ ] Cross-references to related documentation
-- [ ] No placeholder text (`TODO`, `TBD`, etc.)
-
-### Verification Tags
-
-Use these tags to mark documentation status:
-
-```markdown
-<!-- [VERIFIED: 2026-01-19] -->     # Confirmed accurate against source
-<!-- [NEEDS-REVIEW] -->             # Exists but needs accuracy check
-<!-- [INCOMPLETE] -->               # Missing significant content
-<!-- [EXAMPLE-NEEDED] -->           # Needs working code example
-```
-
-Place tags at the top of sections they apply to.
-
----
-
-## Refinement Workflows
-
-### Workflow 1: Auditing Existing Documentation
-
-Use this when reviewing a file that already exists.
-
-1. **Open the doc and the source file side-by-side**
-   ```
-   Doc: docs/core-concepts/event-system.md
-   Source: extracted/com/hypixel/hytale/event/EventBus.java
-   ```
-
-2. **Verify class/interface names**
-   - Does the class exist at the stated package?
-   - Is the class hierarchy correct?
-
-3. **Verify method signatures**
-   - Do all documented methods exist?
-   - Are parameter types correct?
-   - Are return types correct?
-
-4. **Test code examples**
-   - Copy example to a scratch plugin
-   - Does it compile?
-   - Are all imports available?
-
-5. **Check for missing content**
-   - Are there public methods not documented?
-   - Are there important patterns not shown?
-
-6. **Update and tag**
-   - Fix any errors found
-   - Add `[VERIFIED: YYYY-MM-DD]` tag
-   - Or add appropriate issue tag if problems remain
-
-### Workflow 2: Filling Documentation Gaps
-
-Use this when creating new documentation.
-
-1. **Identify the source files**
-   ```
-   Topic: Permission System
-   Sources: extracted/com/hypixel/hytale/server/core/permissions/
-   ```
-
-2. **Survey the package**
-   - List all public classes
-   - Identify the main entry points
-   - Note interfaces vs implementations
-
-3. **Find usage examples in builtin/**
-   ```
-   grep -r "Permission" extracted/com/hypixel/hytale/builtin/
-   ```
-
-4. **Document in order**
-   - Overview/purpose first
-   - Core interfaces/classes
-   - Registration/setup methods
-   - Usage patterns with examples
-   - Advanced features
-
-5. **Create working examples**
-   - Include all necessary imports
-   - Show minimal and complete versions
-   - Test that examples compile
-
-6. **Add cross-references**
-   - Link to prerequisite knowledge
-   - Link to related systems
-   - Add to relevant index/glossary
-
-### Workflow 3: Verifying Code Examples
-
-1. **Create a test plugin project** (once)
-   ```
-   test-plugin/
-   ├── build.gradle
-   ├── src/main/java/
-   │   └── TestPlugin.java
-   └── plugin.json
-   ```
-
-2. **For each code example**
-   - Copy to test plugin
-   - Add any missing imports
-   - Attempt to compile
-   - Note any errors
-
-3. **Fix examples that fail**
-   - Update the documentation
-   - Ensure imports are included
-   - Use correct method signatures
+| Package | Purpose | Doc Location |
+|---------|---------|--------------|
+| `server/core/plugin/` | Plugin system | `getting-started/` |
+| `server/core/event/` | Events | `core-concepts/event-system.md` |
+| `server/core/command/` | Commands | `core-concepts/commands.md` |
+| `component/` | ECS | `core-concepts/ecs-overview.md` |
+| `server/core/universe/` | World system | `api-reference/world/` |
+| `protocol/` | Networking | `api-reference/networking/` |
+| `server/core/permissions/` | Permissions | `api-reference/permissions/` |
+| `codec/` | Serialization | `api-reference/serialization/` |
+| `server/core/modules/physics/` | Physics | `api-reference/physics/` |
+| `builtin/` | Reference plugins | `tutorials/builtin-plugins.md` |
 
 ---
 
 ## Documentation Standards
 
-### File Structure
+### Frontmatter (Required)
 
-Every documentation file should follow this structure:
+Every markdown file must have frontmatter:
 
 ```markdown
-# Title
+---
+title: "Page Title"
+---
+```
 
-Brief one-paragraph description of what this covers.
+Optional fields:
+```markdown
+---
+title: "Page Title"
+description: "SEO description"
+sidebar:
+  order: 1
+  badge:
+    text: 'New'
+    variant: 'tip'
+---
+```
 
-## Overview
+### Verification Tags
 
-Architecture or concept explanation with diagram if helpful.
+Place at the top of content (after frontmatter):
+
+```markdown
+<!-- [VERIFIED: 2026-01-19] -->     # Confirmed accurate
+<!-- [NEEDS-REVIEW] -->             # Needs accuracy check
+<!-- [INCOMPLETE] -->               # Missing content
+<!-- [EXAMPLE-NEEDED] -->           # Needs code example
+```
+
+### File Structure Template
+
+```markdown
+---
+title: "Topic Name"
+---
+
+<!-- [VERIFIED: 2026-01-19] -->
+
+# Topic Name
+
+Brief description of what this covers.
 
 ## Package Location
 
 `com.hypixel.hytale.path.to.package`
 
-## Core Classes/Interfaces
+## Overview
+
+Architecture explanation.
+
+## Core Classes
 
 ### ClassName
 
-Description of the class.
-
-**Hierarchy:**
-- Extends: `ParentClass`
-- Implements: `InterfaceA`, `InterfaceB`
-
-**Constructors:**
-| Constructor | Description |
-|-------------|-------------|
-| `ClassName()` | Default constructor |
-| `ClassName(Type param)` | Creates with param |
+Description.
 
 **Methods:**
 | Method | Return | Description |
 |--------|--------|-------------|
-| `methodName(Type param)` | `ReturnType` | What it does |
+| `methodName()` | `Type` | What it does |
 
 ## Usage Examples
-
-### Basic Usage
 
 ```java
 import com.hypixel.hytale.path.ClassName;
 
-// Complete, compilable example
-```
-
-### Advanced Usage
-
-```java
-// More complex example
+// Complete example with imports
 ```
 
 ## Related Documentation
 
-- [Related Topic](../path/to/related.md)
-- [Another Topic](../path/to/another.md)
+- [Related Topic](/api-reference/related/overview/)
 ```
 
 ### Code Example Requirements
 
-Every code example must:
+1. **Include imports** - Every example must show necessary imports
+2. **Be compilable** - No `...` or placeholders
+3. **Be practical** - Match patterns from builtin plugins
+4. **Be concise** - Minimal code to demonstrate the point
 
-1. **Include imports**
-   ```java
-   import com.hypixel.hytale.server.core.plugin.JavaPlugin;
-   import com.hypixel.hytale.event.EventPriority;
-   ```
+---
 
-2. **Be complete enough to compile**
-   - Show full method signatures
-   - Include class wrapper if needed
-   - No `...` or `// more code here`
+## Starlight Components
 
-3. **Be practical**
-   - Show real use cases
-   - Avoid contrived examples
-   - Match patterns from builtin plugins
+Use these in `.mdx` files for enhanced formatting:
 
-4. **Be concise**
-   - Minimal code to demonstrate the point
-   - Comments only where logic isn't obvious
+### Cards
 
-### Method Documentation Format
+```mdx
+import { Card, CardGrid } from '@astrojs/starlight/components';
 
-Use tables for method lists:
-
-```markdown
-| Method | Parameters | Returns | Description |
-|--------|------------|---------|-------------|
-| `getName()` | none | `String` | Returns the name |
-| `setEnabled(boolean)` | `enabled: boolean` | `void` | Enables or disables |
-| `find(String, Predicate<T>)` | `name: String`, `filter: Predicate<T>` | `Optional<T>` | Finds matching item |
+<CardGrid>
+  <Card title="Title" icon="rocket">
+    Description text
+  </Card>
+</CardGrid>
 ```
 
-### Enum Documentation Format
+### Callouts
 
-```markdown
-| Value | Description |
-|-------|-------------|
-| `FIRST` | Processed before others |
-| `NORMAL` | Default priority |
-| `LAST` | Processed after others |
+```mdx
+import { Aside } from '@astrojs/starlight/components';
+
+<Aside type="note">Note content</Aside>
+<Aside type="tip">Tip content</Aside>
+<Aside type="caution">Caution content</Aside>
+<Aside type="danger">Danger content</Aside>
+```
+
+### Tabs
+
+```mdx
+import { Tabs, TabItem } from '@astrojs/starlight/components';
+
+<Tabs>
+  <TabItem label="Gradle">Gradle content</TabItem>
+  <TabItem label="Maven">Maven content</TabItem>
+</Tabs>
 ```
 
 ---
 
-## Key Source Files
+## Quality Checklist
 
-### Plugin System
-- `server/core/plugin/JavaPlugin.java` - Main base class
-- `server/core/plugin/PluginBase.java` - Core functionality
-- `common/plugin/PluginManifest.java` - Manifest schema
-- `server/core/plugin/PluginManager.java` - Plugin loading
+Before marking documentation complete:
 
-### Event System
-- `event/EventBus.java` - Event dispatcher
-- `event/IEvent.java` - Sync event interface
-- `event/IAsyncEvent.java` - Async event interface
-- `event/ICancellable.java` - Cancellation mixin
-- `event/EventPriority.java` - Priority enum
+### Accuracy
+- [ ] Class names match source code
+- [ ] Method signatures are correct
+- [ ] Package paths are accurate
+- [ ] Code examples compile
 
-### Command System
-- `server/core/command/system/AbstractCommand.java` - Command base
-- `server/core/command/system/CommandManager.java` - Registration
-- `server/core/command/system/CommandContext.java` - Execution context
-- `server/core/command/system/arguments/` - Argument types
+### Completeness
+- [ ] Frontmatter with title
+- [ ] Package location stated
+- [ ] All public methods documented
+- [ ] At least one working example
 
-### ECS
-- `component/ComponentType.java` - Component definition
-- `component/system/System.java` - System base
-- `component/query/Query.java` - Entity queries
-- `server/core/universe/world/storage/EntityStore.java` - Entity storage
-- `server/core/universe/world/storage/ChunkStore.java` - Chunk storage
+### Usability
+- [ ] Clear introduction
+- [ ] Practical examples
+- [ ] Cross-references to related docs
+- [ ] No TODO/placeholder text
 
-### World System
-- `server/core/universe/Universe.java` - Universe singleton
-- `server/core/universe/world/World.java` - World class
-- `server/core/universe/world/Chunk.java` - Chunk class
+### Final Steps
+- [ ] Add `[VERIFIED: YYYY-MM-DD]` tag
+- [ ] Run `npm run build` successfully
+- [ ] Update TODO.md if needed
 
 ---
 
 ## Built-in Plugin Reference
 
-These plugins demonstrate real-world API usage:
+Use these as examples when documenting APIs:
 
 | Plugin | Location | Key Patterns |
 |--------|----------|--------------|
@@ -322,19 +278,13 @@ These plugins demonstrate real-world API usage:
 | MountPlugin | `builtin/mounts/` | Entity relationships, packets |
 | TeleportPlugin | `builtin/teleport/` | Commands, location handling |
 | CraftingPlugin | `builtin/crafting/` | Recipes, inventory events |
-| PortalsPlugin | `builtin/portals/` | World transitions |
-| BedsPlugin | `builtin/beds/` | Spawn points, block interactions |
-| AdventurePlugin | `builtin/adventure/` | Game modes, progression |
-| BlockPhysicsPlugin | `builtin/blockphysics/` | Physics integration |
-| NPCEditorPlugin | `builtin/npceditor/` | NPC management commands |
 
-### Using Built-ins as Reference
+### Finding Usage Examples
 
-When documenting an API:
-1. Search builtin plugins for usage
-2. Note patterns that repeat across plugins
-3. Use these patterns in examples
-4. Reference the builtin in documentation
+```bash
+# Search builtin plugins for API usage
+grep -r "ClassName" extracted/com/hypixel/hytale/builtin/
+```
 
 ---
 
@@ -351,23 +301,17 @@ public class MyPlugin extends JavaPlugin {
     protected void setup() {
         getEventRegistry().register(PlayerConnectEvent.class, this::onConnect);
         getCommandRegistry().register(new MyCommand());
-        getEntityStoreRegistry().registerSystem(new MySystem());
-    }
-
-    private void onConnect(PlayerConnectEvent event) {
-        getLogger().info("Player connected: " + event.getPlayerRef().getUsername());
     }
 }
 ```
 
 ### Event Handling
 ```java
-// With priority
 getEventRegistry().register(
     EventPriority.EARLY,
     PlayerChatEvent.class,
     event -> {
-        if (event.getMessage().contains("banned_word")) {
+        if (event.getMessage().contains("banned")) {
             event.setCancelled(true);
         }
     }
@@ -390,32 +334,20 @@ public class GreetCommand extends AbstractPlayerCommand<GreetCommand> {
 
 ---
 
-## Quality Checklist
+## Troubleshooting
 
-Before marking documentation complete, verify:
+### Build Errors
 
-### Accuracy
-- [ ] Opened source file and compared class name
-- [ ] Verified package path is correct
-- [ ] Checked all method signatures exist
-- [ ] Confirmed enum values are accurate
-- [ ] Tested code examples compile
+**"title: Required"** - Add frontmatter with title to the markdown file
 
-### Completeness
-- [ ] All public constructors listed
-- [ ] All public methods documented
-- [ ] Return types specified
-- [ ] Parameter types specified
-- [ ] Exceptions noted where relevant
+**"Entry not found"** - Check that the slug in `astro.config.mjs` matches the file path
 
-### Usability
-- [ ] Has clear introductory description
-- [ ] Has at least one working example
-- [ ] Has cross-references to related docs
-- [ ] No TODO or placeholder text
-- [ ] Formatting is consistent
+**"Component not found"** - Use `.mdx` extension for files with Starlight components
 
-### Final Steps
-- [ ] Add `[VERIFIED: YYYY-MM-DD]` tag
-- [ ] Update TODO.md to mark complete
-- [ ] Check if related docs need updates
+### Dev Server Issues
+
+```bash
+# Clear cache and rebuild
+rm -rf node_modules/.astro
+npm run dev
+```
