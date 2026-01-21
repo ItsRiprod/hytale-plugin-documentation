@@ -39,6 +39,14 @@ export default defineConfig({
 		},
 	},
 
+	// Limit Shiki languages to reduce bundle size for Cloudflare Workers (3MB limit)
+	markdown: {
+		shikiConfig: {
+			// @ts-ignore - string array works at runtime for built-in languages
+			langs: ['java', 'json', 'groovy', 'bash', 'xml'],
+		},
+	},
+
 	integrations: [
 		starlight({
 			title: 'Hytale Server Modding',
