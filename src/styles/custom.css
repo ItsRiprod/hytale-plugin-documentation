@@ -270,18 +270,24 @@ pre {
 }
 
 /* ========================================
-   Tables
-   ======================================== */
+Tables
+======================================== */
+
+.sl-markdown-content {
+	overflow: auto
+}
+
 table {
 	border-radius: 0.75rem;
-	overflow: hidden;
+	overflow: auto;
 	border: 1px solid var(--sl-color-hairline);
-	width: 100% !important;
+	width: 100%;
+	min-width: 100%;
 	max-width: 100%;
 	border-collapse: separate;
 	border-spacing: 0;
 	margin: 1.5rem 0;
-	display: table !important;
+	display: table;
 }
 
 th {

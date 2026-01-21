@@ -50,7 +50,7 @@ export default defineConfig({
 			},
 			plugins: [starlightImageZoom(), starlightLinksValidator()],
 			social: [
-				{ icon: 'github', label: 'GitHub', href: 'https://github.com/hypixel-studios/hytale' },
+				{ icon: 'github', label: 'GitHub', href: 'https://github.com/itsriprod/doctale' },
 			],
 			favicon: '/favicon.svg',
 			head: [
@@ -266,6 +266,7 @@ export default defineConfig({
 								{ label: 'Overview', slug: 'api-reference/interaction/overview' },
 								{ label: 'Block Tracking', slug: 'api-reference/interaction/block-tracking' },
 								{ label: 'Custom Interactions', slug: 'api-reference/interaction/custom-interactions' },
+								{ label: 'Java Operations', slug: 'api-reference/interaction/java-operations' },
 							],
 						},
 						{

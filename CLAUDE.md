@@ -143,6 +143,9 @@ This content was generated from decompiled code analysis.
 | `starlight-image-zoom` | Click-to-zoom on images | Automatic for all images |
 | `starlight-links-validator` | Validates internal links | Runs during build |
 | `remark-mermaidjs` | Mermaid diagrams | **Note**: Not compatible with Cloudflare Workers, use code blocks instead |
+| `sharp` | Image processing/optimization | Used by Astro for image handling |
+
+**Note**: Additional plugins may be added as part of the Phase 0 plugin ecosystem analysis (see TODO.md). Any new plugins must be compatible with Cloudflare Workers SSR deployment.
 
 ### Code Block Features
 
@@ -388,6 +391,51 @@ The **Hytale Blockbench Plugin** is the official tool for creating assets.
 - `.blockymodel` - 3D model files
 - `.blockyanim` - Animation files
 - `.png` - Texture files (must be correct size)
+
+---
+
+## Page Format & Consistency Requirements
+
+### File Format: .mdx Required
+
+**All documentation pages MUST use the `.mdx` format** (not `.md`) to enable consistent use of Starlight components. The `.mdx` format allows importing and using JSX components like `<Aside>`, `<FileTree>`, `<Steps>`, `<Tabs>`, etc.
+
+When creating or modifying pages:
+1. Always use `.mdx` extension
+2. Import required components at the top of the file
+3. Use Starlight components instead of markdown alternatives
+
+### Component Usage Guidelines
+
+| Content Type | Use Component | Instead of |
+|--------------|---------------|------------|
+| Warnings/Notes/Tips | `<Aside type="caution/note/tip">` | `:::caution` markdown syntax |
+| Directory structures | `<FileTree>` | Code blocks with ASCII trees |
+| Numbered procedures | `<Steps>` | Plain numbered lists |
+| Multiple related examples | `<Tabs>` / `<TabItem>` | Multiple code blocks |
+| Navigation cards | `<CardGrid>` / `<Card>` | Bulleted links |
+| Status indicators | `<Badge>` | Inline text |
+
+### Page Length Guidelines
+
+Pages should be focused and navigable. Follow these guidelines:
+- **Target length**: 200-400 lines
+- **Maximum length**: 500 lines (unless justified)
+- **If over 500 lines**: Split into focused sub-pages
+
+When splitting pages:
+1. Create an overview page for the section
+2. Create focused sub-pages for specific topics
+3. Update `astro.config.mjs` sidebar with new structure
+4. Ensure cross-links between related pages
+
+### Current Documentation Status
+
+**File format distribution** (as of last audit):
+- `.mdx` files: Using Starlight components
+- `.md` files: Need conversion to `.mdx`
+
+See `TODO.md` Phase 0 for the complete conversion checklist.
 
 ---
 
