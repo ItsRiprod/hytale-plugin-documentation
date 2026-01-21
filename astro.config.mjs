@@ -2,8 +2,6 @@
 import { defineConfig } from 'astro/config';
 import starlight from '@astrojs/starlight';
 import cloudflare from '@astrojs/cloudflare';
-import starlightImageZoom from 'starlight-image-zoom';
-import starlightLinksValidator from 'starlight-links-validator';
 // Note: remark-mermaidjs requires Playwright which is incompatible with Cloudflare Workers
 // Mermaid diagrams will use client-side rendering instead
 
@@ -56,7 +54,8 @@ export default defineConfig({
 				src: './public/logo.svg',
 				alt: 'Hytale Server Modding',
 			},
-			plugins: [starlightImageZoom(), starlightLinksValidator()],
+			// Disabled to reduce bundle size for Cloudflare Workers
+			// plugins: [starlightImageZoom(), starlightLinksValidator()],
 			social: [
 				{ icon: 'github', label: 'GitHub', href: 'https://github.com/itsriprod/doctale' },
 			],
