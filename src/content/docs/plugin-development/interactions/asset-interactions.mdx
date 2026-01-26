@@ -1,21 +1,17 @@
 ---
-title: "Custom Interactions"
+title: "Asset-Based Interactions"
+description: "Create custom interactions using JSON asset files without writing Java code"
 ---
 
 import { Aside, FileTree, Steps, Tabs, TabItem, Badge } from '@astrojs/starlight/components';
 
-{/* [VERIFIED: 2026-01-24] - Updated with Update 2 interaction types */}
-
-# Custom Interactions
-
-This document covers creating custom interactions through both **asset-based JSON definitions** and **Java code**.
-
-- **Asset-Based Interactions** - Define interaction chains via JSON files (most common approach)
-- **Java Code Interactions** - Implement custom Operation classes for new interaction types
-
-## Asset-Based Interactions
+{/* [VERIFIED: 2026-01-25] - Reorganized from custom-interactions.mdx */}
 
 The most common way to create custom interactions is through JSON asset files. This allows you to define interaction chains, damage calculations, animations, and effects without writing Java code.
+
+<Aside type="tip">
+For completely new interaction types that can't be created with JSON, see [Java Operations](/plugin-development/interactions/java-operations/).
+</Aside>
 
 ### Asset Locations
 <FileTree>
@@ -666,7 +662,9 @@ Available animation IDs depend on the item's `PlayerAnimationsId`. For swords:
 
 ## Related
 
-- [Java Interaction Operations](/plugin-development/interactions/java-operations/) - Create custom Operation types in Java
-- [Interaction System](/plugin-development/interactions/overview/) - System overview
+- [Interaction System Overview](/plugin-development/interactions/overview/) - System architecture
+- [Interaction Types](/plugin-development/interactions/interaction-types/) - All 25 interaction types
+- [Control Flow Patterns](/plugin-development/interactions/control-flow-interactions/) - Serial, Parallel, Repeat
+- [Charging Mechanics](/plugin-development/interactions/charging-interactions/) - Hold-to-charge patterns
+- [Java Operations](/plugin-development/interactions/java-operations/) - Custom Operation types in Java
 - [Block Tracking](/plugin-development/interactions/block-tracking/) - Track block placements
-- [Serialization](/plugin-development/serialization/overview/) - Codec system

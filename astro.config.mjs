@@ -187,6 +187,7 @@ export default defineConfig({
 							collapsed: true,
 							items: [
 								{ label: 'Overview', slug: 'plugin-development/entities/overview' },
+								{ label: 'Targeting', slug: 'plugin-development/entities/targeting' },
 								{ label: 'Effects', slug: 'plugin-development/entities/effects' },
 								{ label: 'Groups', slug: 'plugin-development/entities/groups' },
 								{ label: 'Inventory', slug: 'plugin-development/entities/inventory' },
@@ -245,9 +246,15 @@ export default defineConfig({
 							collapsed: true,
 							items: [
 								{ label: 'Overview', slug: 'plugin-development/interactions/overview' },
-								{ label: 'Block Tracking', slug: 'plugin-development/interactions/block-tracking' },
-								{ label: 'Custom Interactions', slug: 'plugin-development/interactions/custom-interactions' },
+								{ label: 'Interaction Types', slug: 'plugin-development/interactions/interaction-types' },
+								{ label: 'Asset-Based Interactions', slug: 'plugin-development/interactions/asset-interactions' },
+								{ label: 'Interaction Lifecycle', slug: 'plugin-development/interactions/interaction-lifecycle' },
+								{ label: 'Client-Server Sync', slug: 'plugin-development/interactions/client-server-sync' },
+								{ label: 'Control Flow Patterns', slug: 'plugin-development/interactions/control-flow-interactions' },
+								{ label: 'Charging Mechanics', slug: 'plugin-development/interactions/charging-interactions' },
+								{ label: 'Charging Deep Dive', slug: 'plugin-development/interactions/charging-deep-dive' },
 								{ label: 'Java Operations', slug: 'plugin-development/interactions/java-operations' },
+								{ label: 'Block Tracking', slug: 'plugin-development/interactions/block-tracking' },
 							],
 						},
 						{
@@ -318,6 +325,7 @@ export default defineConfig({
 							collapsed: true,
 							items: [
 								{ label: 'Custom Weapon', slug: 'tutorials/examples/custom-weapon' },
+								{ label: 'Channeling Staff', slug: 'tutorials/examples/channeling-staff' },
 							],
 						},
 					],
