@@ -19,26 +19,24 @@ The Networking System handles all client-server communication through a packet-b
 
 ## Architecture
 
-```
-┌─────────────────────────────────────────────────────────────────┐
-│                    Networking Architecture                      │
-│  ┌───────────────┐    ┌───────────────┐    ┌─────────────────┐  │
-│  │    Client     │◄──►│   Transport   │◄──►│  PacketHandler  │  │
-│  │               │    │  (TCP/QUIC)   │    │                 │  │
-│  └───────────────┘    └───────────────┘    └─────────┬───────┘  │
-│                                                      │          │
-│                       ┌──────────────────────────────▼──────┐   │
-│                       │        Adapter Pipeline             │   │
-│                       │  ┌─────────┐  ┌─────────┐           │   │
-│                       │  │Inbound  │  │Outbound │           │   │
-│                       │  │Adapters │  │Adapters │           │   │
-│                       │  └─────────┘  └─────────┘           │   │
-│                       └──────────────────────────────┬──────┘   │
-│                                                      │          │
-│                       ┌──────────────────────────────▼──────┐   │
-│                       │         Game Logic / Plugins        │   │
-│                       └─────────────────────────────────────┘   │
-└─────────────────────────────────────────────────────────────────┘
+```mermaid
+flowchart TB
+    subgraph Network["Networking Architecture"]
+        Client["Client"]
+        Transport["Transport<br/>(TCP/QUIC)"]
+        Handler["PacketHandler"]
+
+        subgraph Pipeline["Adapter Pipeline"]
+            Inbound["Inbound<br/>Adapters"]
+            Outbound["Outbound<br/>Adapters"]
+        end
+
+        Logic["Game Logic / Plugins"]
+    end
+
+    Client <--> Transport <--> Handler
+    Handler --> Pipeline
+    Pipeline --> Logic
 ```
 
 ## Core Classes

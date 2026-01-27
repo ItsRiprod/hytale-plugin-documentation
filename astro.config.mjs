@@ -1,6 +1,8 @@
 // @ts-check
 import { defineConfig } from 'astro/config';
 import starlight from '@astrojs/starlight';
+import starlightImageZoom from 'starlight-image-zoom';
+import mermaid from 'astro-mermaid';
 
 // https://astro.build/config
 export default defineConfig({
@@ -17,6 +19,10 @@ export default defineConfig({
 	},
 
 	integrations: [
+		mermaid({
+			// Auto-switch dark/light based on site theme
+			autoTheme: true,
+		}),
 		starlight({
 			title: 'Hytale Server Modding',
 			description: 'AI-generated documentation for Hytale server plugin development, curated from decompiled source code analysis. Unofficial community resource.',
@@ -25,13 +31,30 @@ export default defineConfig({
 				src: './public/logo.svg',
 				alt: 'Hytale Server Modding',
 			},
-			// Disabled to reduce bundle size for Cloudflare Workers
-			// plugins: [starlightImageZoom(), starlightLinksValidator()],
+			plugins: [
+				starlightImageZoom({
+					showCaptions: true
+				})
+			],
 			social: [
 				{ icon: 'github', label: 'GitHub', href: 'https://github.com/itsriprod/doctale' },
 			],
 			favicon: '/favicon.svg',
 			head: [
+				{
+					tag: 'script',
+					content: `
+						document.addEventListener('click', (e) => {
+							const mermaid = e.target.closest('.mermaid');
+							if (!mermaid) return;
+							if (document.fullscreenElement) {
+								document.exitFullscreen();
+							} else {
+								mermaid.requestFullscreen().catch(() => {});
+							}
+						});
+					`,
+				},
 				{
 					tag: 'link',
 					attrs: {

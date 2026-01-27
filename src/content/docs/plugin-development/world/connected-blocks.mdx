@@ -4,7 +4,14 @@ title: "Connected Blocks System"
 
 {/* [VERIFIED: 2026-01-19] */}
 
-import { Aside, FileTree, Steps, Tabs, TabItem, Badge } from '@astrojs/starlight/components';
+import {
+  Aside,
+  FileTree,
+  Steps,
+  Tabs,
+  TabItem,
+  Badge,
+} from "@astrojs/starlight/components";
 
 # Connected Blocks System
 
@@ -150,12 +157,12 @@ public class StairConnectedBlockRuleSet extends ConnectedBlockRuleSet {
 
 **Variants:**
 
-| Variant | Description |
-|---------|-------------|
-| `Straight` | Normal stair piece |
-| `CornerLeft` | Left corner turn |
-| `CornerRight` | Right corner turn |
-| `InvertedCornerLeft` | Inverted left corner |
+| Variant               | Description           |
+| --------------------- | --------------------- |
+| `Straight`            | Normal stair piece    |
+| `CornerLeft`          | Left corner turn      |
+| `CornerRight`         | Right corner turn     |
+| `InvertedCornerLeft`  | Inverted left corner  |
 | `InvertedCornerRight` | Inverted right corner |
 
 ### RoofConnectedBlockRuleSet
@@ -176,9 +183,9 @@ public class RoofConnectedBlockRuleSet extends ConnectedBlockRuleSet {
 
 **Additional Configuration:**
 
-| Property | Type | Description |
-|----------|------|-------------|
-| `width` | int | Roof piece width |
+| Property | Type | Description      |
+| -------- | ---- | ---------------- |
+| `width`  | int  | Roof piece width |
 
 ## Pattern Matching
 
@@ -305,20 +312,22 @@ if (result != null) {
 5. **Neighbor Notification**: Adjacent connected blocks are notified to update
 6. **Cascade Limit**: Updates cascade up to MAX_UPDATE_DEPTH (3) levels
 
-```
-Update Cascade (depth 3):
+```mermaid
+flowchart TD
+    P["Placed Block<br/>(depth 0)"] --> N1["Neighbor"]
+    P --> N2["Neighbor"]
+    P --> N3["Neighbor"]
+    N1 --> D2A["Neighbor<br/>(depth 2)"]
+    N3 --> D2B["Neighbor<br/>(depth 2)"]
+    D2A --> D3["Neighbor<br/>(depth 3 - final)"]
 
-    Placed Block (depth 0)
-         │
-    ┌────┼────┐
-    │    │    │
-Neighbor Neighbor Neighbor (depth 1)
-    │         │
-    │    ┌────┘
-    │    │
-Neighbor Neighbor (depth 2)
-    │
-Neighbor (depth 3 - final)
+    style P fill:#2563eb,color:#fff
+    style N1 fill:#10b981,color:#fff
+    style N2 fill:#10b981,color:#fff
+    style N3 fill:#10b981,color:#fff
+    style D2A fill:#f59e0b,color:#fff
+    style D2B fill:#f59e0b,color:#fff
+    style D3 fill:#7c3aed,color:#fff
 ```
 
 ## Network Synchronization
@@ -394,38 +403,38 @@ Assets/Server/Item/CustomConnectedBlockTemplates/
 
 ### Template Schema
 
-| Field | Type | Description |
-|-------|------|-------------|
-| `ConnectsToOtherMaterials` | `bool` | Whether to connect to different block types |
-| `DefaultShape` | `string` | Default shape when no pattern matches |
-| `DontUpdateAfterInitialPlacement` | `bool` | Only calculate on placement |
-| `Shapes` | `object` | Map of shape names to shape definitions |
+| Field                             | Type     | Description                                 |
+| --------------------------------- | -------- | ------------------------------------------- |
+| `ConnectsToOtherMaterials`        | `bool`   | Whether to connect to different block types |
+| `DefaultShape`                    | `string` | Default shape when no pattern matches       |
+| `DontUpdateAfterInitialPlacement` | `bool`   | Only calculate on placement                 |
+| `Shapes`                          | `object` | Map of shape names to shape definitions     |
 
 ### Shape Definition
 
-| Field | Type | Description |
-|-------|------|-------------|
-| `FaceTags` | `object` | Face connection tags by direction |
-| `PatternsToMatchAnyOf` | `array` | Patterns where any match selects this shape |
+| Field                  | Type     | Description                                 |
+| ---------------------- | -------- | ------------------------------------------- |
+| `FaceTags`             | `object` | Face connection tags by direction           |
+| `PatternsToMatchAnyOf` | `array`  | Patterns where any match selects this shape |
 
 ### Pattern Rule
 
-| Field | Type | Description |
-|-------|------|-------------|
-| `Type` | `string` | Rule type (usually `"Custom"`) |
-| `AllowedPatternTransformations` | `object` | Rotation settings |
-| `TransformRulesToOrientation` | `bool` | Apply block rotation to rules |
-| `YawToApplyAddReplacedBlockType` | `string` | Yaw adjustment |
-| `RulesToMatch` | `array` | Position rules to check |
+| Field                            | Type     | Description                    |
+| -------------------------------- | -------- | ------------------------------ |
+| `Type`                           | `string` | Rule type (usually `"Custom"`) |
+| `AllowedPatternTransformations`  | `object` | Rotation settings              |
+| `TransformRulesToOrientation`    | `bool`   | Apply block rotation to rules  |
+| `YawToApplyAddReplacedBlockType` | `string` | Yaw adjustment                 |
+| `RulesToMatch`                   | `array`  | Position rules to check        |
 
 ### Position Rule
 
-| Field | Type | Description |
-|-------|------|-------------|
-| `Position` | `object` | Relative position `{X, Y, Z}` |
-| `IncludeOrExclude` | `string` | `"Include"` or `"Exclude"` |
-| `Shapes` | `array` | Shape names that match |
-| `FaceTags` | `object` | Required face tags |
+| Field              | Type     | Description                   |
+| ------------------ | -------- | ----------------------------- |
+| `Position`         | `object` | Relative position `{X, Y, Z}` |
+| `IncludeOrExclude` | `string` | `"Include"` or `"Exclude"`    |
+| `Shapes`           | `array`  | Shape names that match        |
+| `FaceTags`         | `object` | Required face tags            |
 
 ### Wall Template Example
 
@@ -578,23 +587,23 @@ Assets/Server/Item/CustomConnectedBlockTemplates/
 
 ### Common Face Tags
 
-| Tag | Used For |
-|-----|----------|
-| `FenceConnection` | Walls, fences, gates |
+| Tag                | Used For                  |
+| ------------------ | ------------------------- |
+| `FenceConnection`  | Walls, fences, gates      |
 | `PillarConnection` | Vertical pillars, columns |
 
 ### Template Types
 
-| Template | Shapes | Use Case |
-|----------|--------|----------|
-| Wall | Straight, Corner, T_Junction, Cross_Junction, Gate | Fences, walls |
-| Pillar | Base, Base_Inverted, Middle | Columns, pillars |
-| Door | Default | Single/double doors |
-| Roof | Various | Roof pieces |
-| Rails | Various | Minecart rails |
-| Chest | Various | Connected storage |
-| Bookshelf | Various | Library shelves |
-| Branch | Various | Tree connections |
+| Template  | Shapes                                             | Use Case            |
+| --------- | -------------------------------------------------- | ------------------- |
+| Wall      | Straight, Corner, T_Junction, Cross_Junction, Gate | Fences, walls       |
+| Pillar    | Base, Base_Inverted, Middle                        | Columns, pillars    |
+| Door      | Default                                            | Single/double doors |
+| Roof      | Various                                            | Roof pieces         |
+| Rails     | Various                                            | Minecart rails      |
+| Chest     | Various                                            | Connected storage   |
+| Bookshelf | Various                                            | Library shelves     |
+| Branch    | Various                                            | Tree connections    |
 
 ## Related
 

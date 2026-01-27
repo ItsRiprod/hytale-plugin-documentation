@@ -38,17 +38,17 @@ Runs interactions one after another in order.
 
 ### How It Works
 
-```
-Frame 1-3: MyPlugin_WindUp (state = NotFinished)
-Frame 4:   MyPlugin_WindUp (state = Finished)
-           ↓
-Frame 5-6: MyPlugin_Swing (state = NotFinished)
-Frame 7:   MyPlugin_Swing (state = Finished)
-           ↓
-Frame 8-9: MyPlugin_Recovery (state = NotFinished)
-Frame 10:  MyPlugin_Recovery (state = Finished)
-           ↓
-Serial complete
+```mermaid
+flowchart TD
+    F1["Frame 1-3: MyPlugin_WindUp<br/>(state = NotFinished)"]
+    F4["Frame 4: MyPlugin_WindUp<br/>(state = Finished)"]
+    F5["Frame 5-6: MyPlugin_Swing<br/>(state = NotFinished)"]
+    F7["Frame 7: MyPlugin_Swing<br/>(state = Finished)"]
+    F8["Frame 8-9: MyPlugin_Recovery<br/>(state = NotFinished)"]
+    F10["Frame 10: MyPlugin_Recovery<br/>(state = Finished)"]
+    Complete["Serial complete"]
+
+    F1 --> F4 --> F5 --> F7 --> F8 --> F10 --> Complete
 ```
 
 ### Source Implementation
@@ -102,14 +102,16 @@ Parallel interactions reference **RootInteractions**, not regular interactions. 
 
 ### How It Works
 
-```
-                    ┌─── Fork 1: Root_Visual_Effect ──→ (runs independently)
-                    │
-Main Chain → Parallel ─── Fork 2: Root_Sound_Effect ──→ (runs independently)
-                    │
-                    └─── Fork 3: Root_Damage_Apply ───→ (runs independently)
-                    │
-            (state = Finished immediately)
+```mermaid
+flowchart LR
+    Main["Main Chain"] --> Parallel
+    Parallel --> F1["Fork 1: Root_Visual_Effect"]
+    Parallel --> F2["Fork 2: Root_Sound_Effect"]
+    Parallel --> F3["Fork 3: Root_Damage_Apply"]
+    F1 --> R1["(runs independently)"]
+    F2 --> R2["(runs independently)"]
+    F3 --> R3["(runs independently)"]
+    Parallel --> Done["(state = Finished immediately)"]
 ```
 
 ### Source Implementation
@@ -174,17 +176,16 @@ Loops an interaction a specified number of times.
 
 ### How It Works
 
-```
-RepeatInteraction (Repeat: 3)
-    │
-    ├─→ Fork 1: Root_Spin_Attack
-    │       ↓ (completes)
-    ├─→ Fork 2: Root_Spin_Attack
-    │       ↓ (completes)
-    └─→ Fork 3: Root_Spin_Attack
-            ↓ (completes)
-    ↓
-Next: MyPlugin_Recovery
+```mermaid
+flowchart TD
+    Repeat["RepeatInteraction (Repeat: 3)"]
+    Repeat --> F1["Fork 1: Root_Spin_Attack"]
+    F1 --> C1["(completes)"]
+    C1 --> F2["Fork 2: Root_Spin_Attack"]
+    F2 --> C2["(completes)"]
+    C2 --> F3["Fork 3: Root_Spin_Attack"]
+    F3 --> C3["(completes)"]
+    C3 --> Next["Next: MyPlugin_Recovery"]
 ```
 
 ### Source Implementation

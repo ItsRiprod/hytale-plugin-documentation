@@ -287,18 +287,35 @@ protected void tick0(
 
 Understanding how interactions chain together:
 
-```
-RootInteraction defines: ["Swing_Animation", "Hit_Detection", "Apply_Damage"]
+```mermaid
+sequenceDiagram
+    participant Root as RootInteraction
+    participant Swing as Swing_Animation
+    participant Hit as Hit_Detection
+    participant Damage as Apply_Damage
 
-Frame 1: Swing_Animation.tick0() → state = NotFinished
-Frame 2: Swing_Animation.tick0() → state = NotFinished
-Frame 3: Swing_Animation.tick0() → state = Finished
-         ↓ (operationCounter++)
-Frame 4: Hit_Detection.tick0() → state = Finished (hit found)
-         ↓ (operationCounter++)
-Frame 5: Apply_Damage.tick0() → state = Finished
-         ↓
-Chain complete
+    Note over Root: Chain: [Swing_Animation, Hit_Detection, Apply_Damage]
+
+    Root->>Swing: Frame 1: tick0()
+    Swing-->>Root: state = NotFinished
+
+    Root->>Swing: Frame 2: tick0()
+    Swing-->>Root: state = NotFinished
+
+    Root->>Swing: Frame 3: tick0()
+    Swing-->>Root: state = Finished
+
+    Note over Root: operationCounter++
+
+    Root->>Hit: Frame 4: tick0()
+    Hit-->>Root: state = Finished (hit found)
+
+    Note over Root: operationCounter++
+
+    Root->>Damage: Frame 5: tick0()
+    Damage-->>Root: state = Finished
+
+    Note over Root: Chain complete
 ```
 
 ### Operation Counter

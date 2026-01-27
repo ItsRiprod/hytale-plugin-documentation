@@ -17,45 +17,80 @@ Packet handlers process incoming packets and manage the connection state machine
 
 ## Handler Hierarchy
 
-```
-PacketHandler (abstract base)
-├── GenericConnectionPacketHandler (abstract)
-│   ├── HandshakeHandler (abstract)
-│   │   └── AuthenticationPacketHandler
-│   ├── PasswordPacketHandler
-│   └── SetupPacketHandler
-├── GenericPacketHandler (abstract)
-│   └── GamePacketHandler
-└── InitialPacketHandler
+```mermaid
+flowchart TD
+    PacketHandler["PacketHandler<br/><i>abstract base</i>"]
+
+    subgraph Connection["Connection Handlers"]
+        GenericConnectionPacketHandler["GenericConnectionPacketHandler<br/><i>abstract</i>"]
+        HandshakeHandler["HandshakeHandler<br/><i>abstract</i>"]
+        AuthenticationPacketHandler
+        PasswordPacketHandler
+        SetupPacketHandler
+    end
+
+    subgraph Game["Game Handlers"]
+        GenericPacketHandler["GenericPacketHandler<br/><i>abstract</i>"]
+        GamePacketHandler
+    end
+
+    InitialPacketHandler
+
+    PacketHandler --> GenericConnectionPacketHandler
+    PacketHandler --> GenericPacketHandler
+    PacketHandler --> InitialPacketHandler
+
+    GenericConnectionPacketHandler --> HandshakeHandler
+    GenericConnectionPacketHandler --> PasswordPacketHandler
+    GenericConnectionPacketHandler --> SetupPacketHandler
+
+    HandshakeHandler --> AuthenticationPacketHandler
+
+    GenericPacketHandler --> GamePacketHandler
 ```
 
 ## Connection State Machine
 
 Handlers transition through connection states:
 
-```
-                    ┌─────────────────────┐
-                    │ InitialPacketHandler │
-                    │   (awaits Connect)   │
-                    └──────────┬──────────┘
-                               │
-              ┌────────────────┼────────────────┐
-              ▼                │                ▼
-┌─────────────────────┐        │   ┌──────────────────────┐
-│PasswordPacketHandler│        │   │AuthenticationHandler │
-│   (dev clients)     │        │   │  (secure clients)    │
-└──────────┬──────────┘        │   └──────────┬───────────┘
-           └───────────────────┼──────────────┘
-                               ▼
-                    ┌─────────────────────┐
-                    │  SetupPacketHandler │
-                    │ (sends world data)  │
-                    └──────────┬──────────┘
-                               ▼
-                    ┌─────────────────────┐
-                    │  GamePacketHandler  │
-                    │ (active gameplay)   │
-                    └─────────────────────┘
+```mermaid
+stateDiagram-v2
+    [*] --> Initial: Connection opened
+
+    state Initial {
+        [*] --> awaiting: InitialPacketHandler
+        awaiting: Awaits Connect packet
+    }
+
+    Initial --> Password: Dev client
+    Initial --> Authentication: Secure client
+
+    state Password {
+        [*] --> challenge: PasswordPacketHandler
+        challenge: Handles password challenge
+    }
+
+    state Authentication {
+        [*] --> jwt: AuthenticationHandler
+        jwt: Validates JWT token
+    }
+
+    Password --> Setup: Authenticated
+    Authentication --> Setup: Authenticated
+
+    state Setup {
+        [*] --> sending: SetupPacketHandler
+        sending: Sends world data & assets
+    }
+
+    Setup --> Game: Ready to play
+
+    state Game {
+        [*] --> active: GamePacketHandler
+        active: Routes gameplay packets
+    }
+
+    Game --> [*]: Disconnected
 ```
 
 ## Handler Types

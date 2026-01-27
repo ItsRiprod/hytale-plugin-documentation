@@ -6,10 +6,6 @@ title: "Prefab Structures"
 
 import { Aside, Tabs, TabItem, FileTree } from '@astrojs/starlight/components';
 
-<Aside type="caution" title="AI-Generated Content">
-This documentation was generated from analysis of decompiled source code and game assets. Some details may be incomplete or subject to change.
-</Aside>
-
 Prefabs are pre-built block structures used for world generation and spawning. They range from simple trees to complex dungeon rooms, monuments, and NPC camps.
 
 ## Asset Location
@@ -120,24 +116,24 @@ Prefabs use `.prefab.json` extension with optional `.prefab.json.lpf` compressed
 
 Located in `Trees/`, organized by species and growth stage:
 
-```
-Trees/
-├── Oak/
-│   ├── Stage_0/
-│   │   ├── Oak_Stage0_001.prefab.json
-│   │   └── Oak_Stage0_002.prefab.json
-│   ├── Stage_1/
-│   ├── Stage_2/
-│   ├── Stage_3/
-│   ├── Stage_4/
-│   ├── Stage_5/
-│   ├── Stage_6/
-│   ├── Stage_7/
-│   └── Stumps/
-├── Birch/
-├── Pine/
-└── ...
-```
+<FileTree>
+- Trees/
+  - Oak/
+    - Stage_0/
+      - Oak_Stage0_001.prefab.json
+      - Oak_Stage0_002.prefab.json
+    - Stage_1/
+    - Stage_2/
+    - Stage_3/
+    - Stage_4/
+    - Stage_5/
+    - Stage_6/
+    - Stage_7/
+    - Stumps/
+  - Birch/
+  - Pine/
+  - ...
+</FileTree>
 
 **Stage System**:
 | Stage | Description |
@@ -169,20 +165,21 @@ Located in `Cave/`:
 | `Klops/` | Klops (troll) cave dwellings |
 
 **Klops Cave Structure**:
-```
-Klops/Basalt/
-├── Start/           # Entry room
-├── Main/            # Main living area
-├── Main_2/          # Secondary room
-├── Main_3/          # Tertiary room
-├── Bedroom/         # Sleeping area
-├── Bathroom/        # Utility room
-├── Cellar/          # Storage
-├── Cave/            # Natural cave section
-├── Stairs_Up/       # Upper connection
-├── Stairs_Down/     # Lower connection
-└── Entrance/        # Cave entrance
-```
+
+<FileTree>
+- Klops/Basalt/
+  - Start/ Entry room
+  - Main/ Main living area
+  - Main_2/ Secondary room
+  - Main_3/ Tertiary room
+  - Bedroom/ Sleeping area
+  - Bathroom/ Utility room
+  - Cellar/ Storage
+  - Cave/ Natural cave section
+  - Stairs_Up/ Upper connection
+  - Stairs_Down/ Lower connection
+  - Entrance/ Cave entrance
+</FileTree>
 
 ### Dungeons
 

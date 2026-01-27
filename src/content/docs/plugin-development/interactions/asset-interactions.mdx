@@ -35,23 +35,29 @@ For completely new interaction types that can't be created with JSON, see [Java 
 
 ### Interaction System Architecture
 
-```
-Item Definition                 Root Interaction              Interaction Chain
-┌─────────────────┐            ┌──────────────────┐          ┌─────────────────┐
-│ Interactions:   │            │ Interactions: [  │          │ Type: Charging  │
-│   Primary:      │───────────▶   "Weapon_Sword  │─────────▶ Next: Chain     │
-│     Root_...    │            │    _Primary"     │          │                 │
-│   Ability1:     │            │ ]                │          └────────┬────────┘
-│     Root_...    │            └──────────────────┘                   │
-└─────────────────┘                                                   ▼
-                                                             ┌─────────────────┐
-       InteractionVars                                       │ Type: Selector  │
-       (Override Vars)                                       │ HitEntity: ...  │
-       ┌─────────────┐                                       └────────┬────────┘
-       │ Swing_Damage│                                                │
-       │   Parent:   │◀──────────────────────────────────────────────┘
-       │   Custom    │         (Replace with custom damage)
-       └─────────────┘
+```mermaid
+flowchart LR
+    subgraph ItemDef["Item Definition"]
+        Item["Interactions:<br/>Primary: Root_...<br/>Ability1: Root_..."]
+    end
+
+    subgraph RootInt["Root Interaction"]
+        Root["Interactions:<br/>[Weapon_Sword_Primary]"]
+    end
+
+    subgraph Chain["Interaction Chain"]
+        Charging["Type: Charging<br/>Next: Chain"]
+        Selector["Type: Selector<br/>HitEntity: ..."]
+    end
+
+    subgraph Vars["InteractionVars"]
+        Override["Swing_Damage<br/>Parent: Custom"]
+    end
+
+    Item --> Root
+    Root --> Charging
+    Charging --> Selector
+    Selector -.->|"Replace with<br/>custom damage"| Override
 ```
 
 ### Interaction Types

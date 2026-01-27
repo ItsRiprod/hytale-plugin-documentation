@@ -23,12 +23,31 @@ Most custom interactions can be created using JSON asset files without writing J
 
 ## System Architecture
 
-```
-Player Input → InteractionManager → InteractionChain → Operations
-     ↓                ↓                    ↓              ↓
-  MouseClick    Resolves Root       Tracks State    PlaceBlock,
-  KeyPress      Interaction         Per-Entity      DamageEntity,
-                                                    ApplyEffect...
+```mermaid
+flowchart LR
+    subgraph Input["Player Input"]
+        MouseClick
+        KeyPress
+    end
+
+    subgraph Manager["InteractionManager"]
+        Resolve["Resolves Root<br/>Interaction"]
+    end
+
+    subgraph Chain["InteractionChain"]
+        Track["Tracks State<br/>Per-Entity"]
+    end
+
+    subgraph Ops["Operations"]
+        PlaceBlock
+        DamageEntity
+        ApplyEffect
+        More["..."]
+    end
+
+    Input --> Manager
+    Manager --> Chain
+    Chain --> Ops
 ```
 
 ### Core Flow

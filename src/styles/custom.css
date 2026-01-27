@@ -1005,6 +1005,194 @@ a {
 }
 
 /* ========================================
+   Mermaid Diagrams
+   ======================================== */
+/* Container styling */
+.mermaid {
+	background: var(--sl-color-bg-nav);
+	border: 1px solid var(--sl-color-hairline);
+	border-radius: 0.75rem;
+	padding: 1.5rem;
+	margin: 1.5rem 0;
+	overflow-x: auto;
+	cursor: zoom-in;
+	transition: all 0.3s ease;
+	position: relative;
+}
+
+/* Hint text for zoom */
+.mermaid::after {
+	content: 'Click to enlarge';
+	position: absolute;
+	bottom: 0.5rem;
+	right: 0.75rem;
+	font-size: 0.7rem;
+	color: var(--sl-color-gray-5);
+	opacity: 0;
+	transition: opacity 0.2s ease;
+	pointer-events: none;
+}
+
+.mermaid:hover::after {
+	opacity: 1;
+}
+
+/* Fullscreen state */
+.mermaid:fullscreen {
+	background: var(--sl-color-bg);
+	border: none;
+	border-radius: 0;
+	padding: 2rem;
+	cursor: zoom-out;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	overflow: auto;
+}
+
+.mermaid:fullscreen::after {
+	content: 'Press Esc to exit';
+	bottom: 1rem;
+	right: 1.5rem;
+	opacity: 0.7;
+}
+
+.mermaid:fullscreen svg {
+	max-width: 95vw;
+	max-height: 90vh;
+	width: auto;
+	height: auto;
+}
+
+/* Vendor prefixes for fullscreen */
+.mermaid:-webkit-full-screen {
+	background: var(--sl-color-bg);
+	border: none;
+	border-radius: 0;
+	padding: 2rem;
+	cursor: zoom-out;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.mermaid:-moz-full-screen {
+	background: var(--sl-color-bg);
+	border: none;
+	border-radius: 0;
+	padding: 2rem;
+	cursor: zoom-out;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.mermaid:-ms-fullscreen {
+	background: var(--sl-color-bg);
+	border: none;
+	border-radius: 0;
+	padding: 2rem;
+	cursor: zoom-out;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+/* Dark theme Mermaid colors */
+.mermaid .node rect,
+.mermaid .node circle,
+.mermaid .node ellipse,
+.mermaid .node polygon,
+.mermaid .node path {
+	fill: var(--sl-color-bg-accent) !important;
+	stroke: var(--sl-color-accent) !important;
+	stroke-width: 2px !important;
+}
+
+.mermaid .node .label {
+	color: var(--sl-color-white) !important;
+}
+
+.mermaid .edgePath .path {
+	stroke: var(--sl-color-accent) !important;
+	stroke-width: 2px !important;
+}
+
+.mermaid .edgeLabel {
+	background-color: var(--sl-color-bg-nav) !important;
+	color: var(--sl-color-gray-3) !important;
+}
+
+.mermaid .marker {
+	fill: var(--sl-color-accent) !important;
+	stroke: var(--sl-color-accent) !important;
+}
+
+/* Subgraph/cluster styling */
+.mermaid .cluster rect {
+	fill: rgba(59, 130, 246, 0.08) !important;
+	stroke: var(--sl-color-hairline) !important;
+	stroke-width: 1px !important;
+	rx: 8px !important;
+	ry: 8px !important;
+}
+
+.mermaid .cluster text,
+.mermaid .cluster .nodeLabel {
+	fill: var(--sl-color-accent-high) !important;
+	font-weight: 600 !important;
+}
+
+/* Flowchart text */
+.mermaid text,
+.mermaid .nodeLabel,
+.mermaid .label {
+	fill: var(--sl-color-white) !important;
+	font-family: var(--sl-font) !important;
+	font-size: 0.875rem !important;
+}
+
+/* Decision/diamond nodes */
+.mermaid .node.decision rect {
+	fill: rgba(139, 92, 246, 0.2) !important;
+	stroke: var(--hytale-secondary) !important;
+}
+
+/* Light mode adjustments */
+:root[data-theme='light'] .mermaid {
+	background: var(--sl-color-bg-nav);
+}
+
+:root[data-theme='light'] .mermaid .node rect,
+:root[data-theme='light'] .mermaid .node circle,
+:root[data-theme='light'] .mermaid .node ellipse,
+:root[data-theme='light'] .mermaid .node polygon,
+:root[data-theme='light'] .mermaid .node path {
+	fill: rgba(37, 99, 235, 0.1) !important;
+	stroke: var(--sl-color-accent) !important;
+}
+
+:root[data-theme='light'] .mermaid text,
+:root[data-theme='light'] .mermaid .nodeLabel,
+:root[data-theme='light'] .mermaid .label {
+	fill: var(--sl-color-gray-1) !important;
+}
+
+:root[data-theme='light'] .mermaid .cluster rect {
+	fill: rgba(37, 99, 235, 0.06) !important;
+	stroke: var(--sl-color-hairline) !important;
+}
+
+:root[data-theme='light'] .mermaid .cluster text {
+	fill: var(--sl-color-accent) !important;
+}
+
+:root[data-theme='light'] .mermaid .edgeLabel {
+	background-color: var(--sl-color-bg-nav) !important;
+	color: var(--sl-color-gray-3) !important;
+}
+
+/* ========================================
    Animations
    ======================================== */
 @keyframes fadeIn {
@@ -1067,6 +1255,39 @@ textarea:focus-visible,
 		border-width: 2px;
 	}
 }
+
+starlight-menu-button button {
+	background: transparent !important;
+	border-radius: 0.5rem !important;
+	box-shadow: none !important;
+	min-width: 30px;
+	min-height: 30px;
+	padding: 3px !important;
+	overflow: hidden;
+	margin-top: 0px !important;
+	align-items: center;
+	justify-content: center;
+	cursor: pointer;
+}
+
+starlight-menu-button button svg {
+	color: var(--sl-color-white) !important;
+	fill: var(--sl-color-white) !important;
+	width: 30px !important;
+	height: 30px !important;
+}
+
+starlight-menu-button button:hover {
+	background: var(--sl-color-bg-accent) !important;
+	border-color: var(--sl-color-accent) !important;
+}
+
+starlight-menu-button button:hover svg {
+	color: var(--sl-color-accent) !important;
+	fill: var(--sl-color-accent) !important;
+}
+
+
 
 /* Ensure adequate touch targets on mobile */
 @media (max-width: 768px) {

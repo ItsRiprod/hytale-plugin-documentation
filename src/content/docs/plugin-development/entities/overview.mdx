@@ -22,15 +22,17 @@ The Entity System manages all game objects that exist within worlds, including p
 
 ### Entity Hierarchy
 
-```
-Entity (base class)
-├── LivingEntity
-│   ├── Player
-│   ├── Creature
-│   └── NPC
-├── ItemEntity
-├── ProjectileEntity
-└── ... other entity types
+```mermaid
+flowchart TB
+    Entity["Entity (base class)"]
+    Entity --> LivingEntity
+    Entity --> ItemEntity
+    Entity --> ProjectileEntity
+    Entity --> Other["... other entity types"]
+
+    LivingEntity --> Player
+    LivingEntity --> Creature
+    LivingEntity --> NPC
 ```
 
 ### Entity as Component

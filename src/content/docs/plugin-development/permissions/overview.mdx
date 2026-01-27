@@ -19,22 +19,23 @@ The Permission System controls access to commands and features. It uses a hierar
 
 ## Architecture
 
-```
-┌─────────────────────────────────────────────────────────────────┐
-│                    Permission System                             │
-│                                                                  │
-│  ┌──────────────────┐        ┌───────────────────────────────┐  │
-│  │ PermissionHolder │        │     PermissionsModule         │  │
-│  │  (Player, etc.)  │───────►│       (Singleton)             │  │
-│  └──────────────────┘        └───────────────┬───────────────┘  │
-│                                              │                   │
-│                           ┌──────────────────┼──────────────────┐│
-│                           ▼                  ▼                  ▼│
-│                   ┌───────────────┐  ┌───────────────┐  ┌──────┐│
-│                   │   Default     │  │   Custom      │  │ ...  ││
-│                   │   Provider    │  │   Provider    │  │      ││
-│                   └───────────────┘  └───────────────┘  └──────┘│
-└─────────────────────────────────────────────────────────────────┘
+```mermaid
+flowchart TB
+    subgraph Permission["Permission System"]
+        Holder["PermissionHolder<br/>(Player, etc.)"]
+        Module["PermissionsModule<br/>(Singleton)"]
+
+        subgraph Providers["Providers"]
+            Default["Default<br/>Provider"]
+            Custom["Custom<br/>Provider"]
+            Other["..."]
+        end
+    end
+
+    Holder --> Module
+    Module --> Default
+    Module --> Custom
+    Module --> Other
 ```
 
 ## Core Interfaces

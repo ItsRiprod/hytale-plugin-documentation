@@ -80,33 +80,31 @@ ChargingInteraction demonstrates:
 
 ## How It Works
 
-```
-Player holds button
-      │
-      ▼
-┌─────────────────────────┐
-│  ChargingInteraction    │
-│  ├─ simulateTick0()     │ ◀─ Client: tracks charge time
-│  │   └─ isCharging()?   │
-│  │       ├─ yes: NotFinished, continue
-│  │       └─ no: Finished, send chargeValue
-│  │
-│  └─ tick0()             │ ◀─ Server: waits for client data
-│      └─ clientData      │
-│          ├─ chargeValue = -1: still charging
-│          ├─ chargeValue = -2: cancelled
-│          └─ chargeValue >= 0: find tier, jump
-└─────────────────────────┘
-      │
-      ▼
-jumpToChargeValue(chargeValue)
-      │
-      ├─ Find closest tier <= chargeValue
-      │
-      └─ context.jump(label[tierIndex])
-             │
-             ▼
-      Execute tier interaction
+```mermaid
+flowchart TD
+    Start["Player holds button"]
+    Start --> Charging
+
+    subgraph Charging["ChargingInteraction"]
+        direction TB
+        Sim["simulateTick0()<br/><i>Client: tracks charge time</i>"]
+        SimCheck{"isCharging()?"}
+        Sim --> SimCheck
+        SimCheck -->|yes| NotFinished["NotFinished, continue"]
+        SimCheck -->|no| Finished["Finished, send chargeValue"]
+
+        Tick["tick0()<br/><i>Server: waits for client data</i>"]
+        ClientData["clientData"]
+        Tick --> ClientData
+        ClientData --> CV1["chargeValue = -1: still charging"]
+        ClientData --> CV2["chargeValue = -2: cancelled"]
+        ClientData --> CV3["chargeValue >= 0: find tier, jump"]
+    end
+
+    CV3 --> Jump["jumpToChargeValue(chargeValue)"]
+    Jump --> FindTier["Find closest tier <= chargeValue"]
+    FindTier --> ContextJump["context.jump(label[tierIndex])"]
+    ContextJump --> Execute["Execute tier interaction"]
 ```
 
 ## Java Implementation Analysis
@@ -385,13 +383,17 @@ public void compile(OperationsBuilder builder) {
 ```
 
 **Resulting structure:**
-```
-[ChargingInteraction] ─→ jump to end
-  ├─ [Label 0] Tier1 chain ─→ jump to end
-  ├─ [Label 1] Tier2 chain ─→ jump to end
-  ├─ [Label 2] Tier3 chain ─→ jump to end
-  └─ [Label 3] Failed chain
-[end]
+```mermaid
+flowchart TB
+    CI["[ChargingInteraction]"] --> End["[end]"]
+    CI --> L0["[Label 0] Tier1 chain"]
+    CI --> L1["[Label 1] Tier2 chain"]
+    CI --> L2["[Label 2] Tier3 chain"]
+    CI --> L3["[Label 3] Failed chain"]
+    L0 --> End
+    L1 --> End
+    L2 --> End
+    L3 --> End
 ```
 
 ## Real-World Examples

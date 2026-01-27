@@ -11,19 +11,23 @@ The interaction system uses a dual-path execution model where the client predict
 
 ## Dual-Path Execution Model
 
-```
-Client                              Server
-  │                                   │
-  ├─ simulateTick0() ────────────────>│
-  │   (local prediction)              │
-  │                                   │
-  │                                   ├─ tick0()
-  │                                   │   (authoritative)
-  │                                   │
-  │<──── InteractionSyncData ─────────┤
-  │      (state, progress, etc.)      │
-  │                                   │
-  └─ reconcile state ◀────────────────┘
+```mermaid
+sequenceDiagram
+    participant Client
+    participant Server
+
+    Client->>Client: simulateTick0()
+    Note right of Client: Local prediction
+
+    Client-->>Server: Input data
+
+    Server->>Server: tick0()
+    Note left of Server: Authoritative
+
+    Server-->>Client: InteractionSyncData
+    Note over Client,Server: state, progress, etc.
+
+    Client->>Client: reconcile state
 ```
 
 ### Why Dual Execution?

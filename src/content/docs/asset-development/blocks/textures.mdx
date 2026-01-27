@@ -6,10 +6,6 @@ title: "Block Textures"
 
 import { Aside, Tabs, TabItem, FileTree } from '@astrojs/starlight/components';
 
-<Aside type="caution" title="AI-Generated Content">
-This documentation was generated from analysis of decompiled source code and game assets. Some details may be incomplete or subject to change.
-</Aside>
-
 Block textures define the visual appearance of blocks in the game world. The texture system supports directional variants (top, side, bottom), animated textures, and tint gradients for biome-based coloring.
 
 ## Asset Location
@@ -207,48 +203,48 @@ The `Blocks/Decorative_Sets/` directory contains themed block collections with m
 
 Each decorative set typically includes:
 
-```
-{Set}/
-├── Barrel.blockymodel
-├── Barrel_*.png (texture variants)
-├── Bed.blockymodel
-├── Bed_Texture.png
-├── Chair.blockymodel
-├── Chair_Texture.png
-├── Chest.blockymodel
-├── Chest_Texture.png
-├── Door.blockymodel
-├── Door_Texture.png
-├── Table.blockymodel
-├── Table_Texture.png
-├── Lantern.blockymodel
-├── Lantern_Texture.png
-└── ...
-```
+<FileTree>
+- {Set}/
+  - Barrel.blockymodel
+  - Barrel_*.png texture variants
+  - Bed.blockymodel
+  - Bed_Texture.png
+  - Chair.blockymodel
+  - Chair_Texture.png
+  - Chest.blockymodel
+  - Chest_Texture.png
+  - Door.blockymodel
+  - Door_Texture.png
+  - Table.blockymodel
+  - Table_Texture.png
+  - Lantern.blockymodel
+  - Lantern_Texture.png
+  - ...
+</FileTree>
 
 ### Village Set Example
 
-```
-Village/
-├── Barrel.blockymodel
-├── Barrel_Ancient.png
-├── Barrel_Crude.png
-├── Barrel_Tavern.png
-├── Bed.blockymodel
-├── Bed_Texture.png
-├── Bench.blockymodel
-├── Chest.blockymodel
-├── Chest_Small.blockymodel
-├── Door.blockymodel
-├── Lantern.blockymodel
-├── Lantern_Ceiling.blockymodel
-├── Painting*.blockymodel (various sizes)
-├── Pot.blockymodel
-├── Pot_Broken.blockymodel
-├── Table.blockymodel
-├── Wardrobe.blockymodel
-└── Window*.blockymodel (connected block variants)
-```
+<FileTree>
+- Village/
+  - Barrel.blockymodel
+  - Barrel_Ancient.png
+  - Barrel_Crude.png
+  - Barrel_Tavern.png
+  - Bed.blockymodel
+  - Bed_Texture.png
+  - Bench.blockymodel
+  - Chest.blockymodel
+  - Chest_Small.blockymodel
+  - Door.blockymodel
+  - Lantern.blockymodel
+  - Lantern_Ceiling.blockymodel
+  - Painting*.blockymodel various sizes
+  - Pot.blockymodel
+  - Pot_Broken.blockymodel
+  - Table.blockymodel
+  - Wardrobe.blockymodel
+  - Window*.blockymodel connected block variants
+</FileTree>
 
 ## Texture Requirements
 

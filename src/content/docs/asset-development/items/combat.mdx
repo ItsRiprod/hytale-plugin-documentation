@@ -6,35 +6,38 @@ title: "Combat System"
 
 import { Aside, Tabs, TabItem, FileTree } from '@astrojs/starlight/components';
 
-<Aside type="caution" title="AI-Generated Content">
-This documentation was generated from analysis of decompiled source code and game assets. Some details may be incomplete or subject to change.
-</Aside>
-
 The combat system defines weapon attacks, damage calculations, and effects through a layered interaction architecture. Items override base interactions using `InteractionVars` to customize damage, effects, and behavior.
 
 ## System Architecture
 
-```
-┌────────────────────────────────────────────────────────────┐
-│                       Item Definition                      │
-│  ┌─────────────────┐    ┌──────────────────────────────┐   │
-│  │   Interactions  │    │        InteractionVars       │   │
-│  │  Primary: Root  │    │  Swing_Left_Damage: {...}    │   │
-│  │  Secondary: Root│    │  Swing_Right_Damage: {...}   │   │
-│  └────────┬────────┘    └───────────────┬──────────────┘   │
-└───────────┼─────────────────────────────┼──────────────────┘
-            │                             │
-            ▼                             ▼
-┌───────────────────────┐    ┌───────────────────────────────┐
-│   RootInteraction     │    │    Override Base Values       │
-│   Cooldown, Queueing  │    │    BaseDamage, Effects        │
-└───────────┬───────────┘    └───────────────────────────────┘
-            │
-            ▼
-┌───────────────────────────────────────────────────────────┐
-│                  Interaction Chain                        │
-│  Charging → Chaining → Attack → Selector → Damage         │
-└───────────────────────────────────────────────────────────┘
+```mermaid
+flowchart TB
+    subgraph ItemDef["Item Definition"]
+        subgraph Interactions["Interactions"]
+            Primary["Primary: Root"]
+            Secondary["Secondary: Root"]
+        end
+        subgraph Vars["InteractionVars"]
+            SwingLeft["Swing_Left_Damage: {...}"]
+            SwingRight["Swing_Right_Damage: {...}"]
+        end
+    end
+
+    subgraph RootInt["RootInteraction"]
+        Cooldown["Cooldown, Queueing"]
+    end
+
+    subgraph Override["Override Base Values"]
+        BaseDamage["BaseDamage, Effects"]
+    end
+
+    subgraph Chain["Interaction Chain"]
+        Charging --> Chaining --> Attack --> Selector --> Damage
+    end
+
+    Interactions --> RootInt
+    Vars --> Override
+    RootInt --> Chain
 ```
 
 ## Asset Locations

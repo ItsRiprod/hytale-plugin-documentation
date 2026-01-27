@@ -19,28 +19,28 @@ The NPC (Non-Player Character) System manages AI-controlled entities in Hytale. 
 
 ## Architecture
 
-```
-┌─────────────────────────────────────────────────────────────┐
-│                       NPC System                             │
-│  ┌─────────────────────────────────────────────────────────┐│
-│  │                     NPCEntity                            ││
-│  │  ┌─────────┐ ┌─────────┐ ┌─────────────┐ ┌───────────┐ ││
-│  │  │  Role   │ │Blackboard│ │ PathManager │ │DamageData │ ││
-│  │  └─────────┘ └─────────┘ └─────────────┘ └───────────┘ ││
-│  └─────────────────────────────────────────────────────────┘│
-│  ┌─────────────────────────────────────────────────────────┐│
-│  │                    Flock System                          ││
-│  │  ┌─────────┐ ┌─────────────┐ ┌─────────────────────┐   ││
-│  │  │  Flock  │ │FlockMembership│ │FlockPlugin          │   ││
-│  │  └─────────┘ └─────────────┘ └─────────────────────┘   ││
-│  └─────────────────────────────────────────────────────────┘│
-│  ┌─────────────────────────────────────────────────────────┐│
-│  │                   Spawning System                        ││
-│  │  ┌────────────┐ ┌────────────┐ ┌────────────────────┐  ││
-│  │  │SpawnBeacon │ │SpawnMarker │ │SpawnController     │  ││
-│  │  └────────────┘ └────────────┘ └────────────────────┘  ││
-│  └─────────────────────────────────────────────────────────┘│
-└─────────────────────────────────────────────────────────────┘
+```mermaid
+flowchart TB
+    subgraph NPC["NPC System"]
+        subgraph NPCEntity["NPCEntity"]
+            Role
+            Blackboard
+            PathManager
+            DamageData
+        end
+
+        subgraph FlockSys["Flock System"]
+            Flock
+            FlockMembership
+            FlockPlugin
+        end
+
+        subgraph SpawnSys["Spawning System"]
+            SpawnBeacon
+            SpawnMarker
+            SpawnController
+        end
+    end
 ```
 
 ## Core Components

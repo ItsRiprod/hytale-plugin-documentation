@@ -18,24 +18,20 @@ The World Generation system creates terrain, structures, and biomes for Hytale w
 
 ## Architecture
 
-```
-┌─────────────────────────────────────────────────────────────┐
-│                    World Generation                          │
-│  ┌─────────────────────────────────────────────────────────┐│
-│  │              HytaleWorldGenProvider                      ││
-│  │  ┌─────────────────────────────────────────────────────┐││
-│  │  │                ChunkGenerator                        │││
-│  │  │  ┌──────────────┐ ┌──────────────┐ ┌─────────────┐ │││
-│  │  │  │ZonePattern   │ │BiomePattern  │ │CaveGenerator│ │││
-│  │  │  │Generator     │ │Generator     │ │             │ │││
-│  │  │  └──────────────┘ └──────────────┘ └─────────────┘ │││
-│  │  │  ┌──────────────┐ ┌──────────────┐ ┌─────────────┐ │││
-│  │  │  │Heightmap     │ │Prefab        │ │Populator    │ │││
-│  │  │  │Generator     │ │Generator     │ │             │ │││
-│  │  │  └──────────────┘ └──────────────┘ └─────────────┘ │││
-│  │  └─────────────────────────────────────────────────────┘││
-│  └─────────────────────────────────────────────────────────┘│
-└─────────────────────────────────────────────────────────────┘
+```mermaid
+flowchart TB
+    subgraph WorldGen["World Generation"]
+        subgraph Provider["HytaleWorldGenProvider"]
+            subgraph ChunkGen["ChunkGenerator"]
+                ZonePattern["ZonePattern<br/>Generator"]
+                BiomePattern["BiomePattern<br/>Generator"]
+                CaveGen["CaveGenerator"]
+                Heightmap["Heightmap<br/>Generator"]
+                Prefab["Prefab<br/>Generator"]
+                Populator
+            end
+        end
+    end
 ```
 
 ## World Gen Providers
@@ -555,23 +551,23 @@ Main world generation configuration:
 
 Each zone has its own configuration:
 
-```
-worldgen/
-├── World.json
-├── zones/
-│   ├── Plains/
-│   │   ├── zone.json
-│   │   └── biomes/
-│   │       ├── Grassland.json
-│   │       └── Forest.json
-│   └── Mountains/
-│       ├── zone.json
-│       └── biomes/
-│           └── Alpine.json
-└── prefabs/
-    ├── village/
-    └── dungeons/
-```
+<FileTree>
+- worldgen/
+  - World.json
+  - zones/
+    - Plains/
+      - zone.json
+      - biomes/
+        - Grassland.json
+        - Forest.json
+    - Mountains/
+      - zone.json
+      - biomes/
+        - Alpine.json
+  - prefabs/
+    - village/
+    - dungeons/
+</FileTree>
 
 ## Custom World Generation
 

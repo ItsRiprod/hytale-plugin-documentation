@@ -4,12 +4,7 @@ title: "Blockbench Setup"
 
 {/* [VERIFIED: 2026-01-20] */}
 
-import { Aside, Card, CardGrid, LinkCard, Steps, Tabs, TabItem, Badge } from '@astrojs/starlight/components';
-
-<Aside type="caution" title="AI-Generated Content">
-This documentation was compiled from official Hytale resources and community guides.
-Always refer to official sources for the latest information.
-</Aside>
+import { Aside, Card, FileTree, CardGrid, LinkCard, Steps, Tabs, TabItem, Badge } from '@astrojs/starlight/components';
 
 Blockbench is the official tool for creating 3D models and animations for Hytale. This guide walks you through installing Blockbench and the Hytale plugin to start creating custom assets.
 
@@ -137,19 +132,19 @@ Blockbench with the Hytale plugin exports these file types:
 
 When creating assets for a plugin, organize files like this:
 
-```
-my-plugin/
-├── assets/
-│   ├── item/
-│   │   └── MyPlugin_Custom_Sword.json    # Item definition
-│   └── model/
-│       └── MyPlugin/
-│           └── Weapons/
-│               └── Sword/
-│                   ├── Custom.blockymodel
-│                   └── Custom_Texture.png
-└── plugin.json
-```
+<FileTree>
+- my-plugin/
+  - assets/
+    - item/
+      - MyPlugin_Custom_Sword.json
+    - model/
+      - MyPlugin/
+        - Weapons/
+          - Sword/
+            - Custom.blockymodel
+            - Custom_Texture.png
+  - plugin.json
+</FileTree>
 
 ## Common Issues
 
