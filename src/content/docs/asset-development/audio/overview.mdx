@@ -6,11 +6,6 @@ title: "Audio Assets"
 
 import { Aside, Card, CardGrid, LinkCard, Tabs, TabItem, FileTree, Badge } from '@astrojs/starlight/components';
 
-<Aside type="caution" title="AI-Generated Content">
-This documentation was generated from analysis of audio assets in `/Assets/Server/Audio/` and `/Assets/Common/Sounds/`.
-Verify all information against actual asset files before use in production.
-</Aside>
-
 The Hytale audio system manages sound effects, music, ambient audio, and audio processing. This page covers the asset files that configure audio behavior.
 
 ## Asset Locations
@@ -396,14 +391,14 @@ Items reference audio via `ItemSoundSetId`:
 
 Save audio as `.ogg` format in `Assets/Common/Sounds/`:
 
-```
-MyPlugin/Sounds/
-├── Weapons/
-│   ├── Custom_Sword_Swing.ogg
-│   └── Custom_Sword_Impact.ogg
-└── Items/
-    └── Custom_Pickup.ogg
-```
+<FileTree>
+- MyPlugin/Sounds/
+  - Weapons/
+    - Custom_Sword_Swing.ogg
+    - Custom_Sword_Impact.ogg
+  - Items/
+    - Custom_Pickup.ogg
+</FileTree>
 
 ### Step 2: Create Sound Event
 

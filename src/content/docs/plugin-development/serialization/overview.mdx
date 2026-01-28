@@ -21,29 +21,24 @@ The Codec System provides serialization and deserialization for BSON and JSON fo
 
 ## Architecture
 
-```
-┌─────────────────────────────────────────────────────────────────┐
-│                       Codec System                               │
-│                                                                  │
-│  ┌──────────────────┐        ┌───────────────────────────────┐  │
-│  │     Codec<T>     │        │       BuilderCodec<T>         │  │
-│  │   (Interface)    │◄───────│        (Complex Objects)       │  │
-│  └────────┬─────────┘        └───────────────────────────────┘  │
-│           │                                                      │
-│           ▼                                                      │
-│  ┌────────────────────────────────────────────────────────────┐ │
-│  │                    Built-in Codecs                          │ │
-│  │  ┌─────────┐ ┌─────────┐ ┌─────────┐ ┌─────────────────┐   │ │
-│  │  │ String  │ │ Integer │ │  Array  │ │      Map        │   │ │
-│  │  │ Codec   │ │ Codec   │ │  Codec  │ │      Codec      │   │ │
-│  │  └─────────┘ └─────────┘ └─────────┘ └─────────────────┘   │ │
-│  └────────────────────────────────────────────────────────────┘ │
-│                                                                  │
-│  ┌────────────────────────────────────────────────────────────┐ │
-│  │                   KeyedCodec<T>                             │ │
-│  │              (Field with name + codec)                      │ │
-│  └────────────────────────────────────────────────────────────┘ │
-└─────────────────────────────────────────────────────────────────┘
+```mermaid
+flowchart TB
+    subgraph Codec["Codec System"]
+        Interface["Codec&lt;T&gt;<br/>(Interface)"]
+        Builder["BuilderCodec&lt;T&gt;<br/>(Complex Objects)"]
+
+        subgraph Builtins["Built-in Codecs"]
+            StringCodec["String<br/>Codec"]
+            IntegerCodec["Integer<br/>Codec"]
+            ArrayCodec["Array<br/>Codec"]
+            MapCodec["Map<br/>Codec"]
+        end
+
+        Keyed["KeyedCodec&lt;T&gt;<br/>(Field with name + codec)"]
+    end
+
+    Builder --> Interface
+    Interface --> Builtins
 ```
 
 ## Core Interfaces

@@ -21,21 +21,47 @@ Complete catalog of all events in the Hytale server, organized by category.
 
 ## Event Hierarchy
 
-```
-IBaseEvent<KeyType>
-├── IEvent<KeyType> (synchronous)
-│   ├── PlayerEvent<KeyType>
-│   ├── PlayerRefEvent<KeyType>
-│   └── EntityEvent<EntityType, KeyType>
-│
-├── IAsyncEvent<KeyType> (asynchronous)
-│   └── PlayerChatEvent
-│
-└── EcsEvent (ECS system events)
-    └── CancellableEcsEvent
+```mermaid
+flowchart TD
+    subgraph BaseEvents["Base Event Interfaces"]
+        IBaseEvent["IBaseEvent&lt;KeyType&gt;"]
+    end
 
-ICancellable (mixin)
-└── ICancellableEcsEvent (mixin for ECS)
+    subgraph SyncEvents["Synchronous Events"]
+        IEvent["IEvent&lt;KeyType&gt;"]
+        PlayerEvent["PlayerEvent&lt;KeyType&gt;"]
+        PlayerRefEvent["PlayerRefEvent&lt;KeyType&gt;"]
+        EntityEvent["EntityEvent&lt;EntityType, KeyType&gt;"]
+    end
+
+    subgraph AsyncEvents["Asynchronous Events"]
+        IAsyncEvent["IAsyncEvent&lt;KeyType&gt;"]
+        PlayerChatEvent
+    end
+
+    subgraph ECSEvents["ECS Events"]
+        EcsEvent
+        CancellableEcsEvent
+    end
+
+    subgraph Mixins["Cancellation Mixins"]
+        ICancellable
+        ICancellableEcsEvent
+    end
+
+    IBaseEvent --> IEvent
+    IBaseEvent --> IAsyncEvent
+    IBaseEvent --> EcsEvent
+
+    IEvent --> PlayerEvent
+    IEvent --> PlayerRefEvent
+    IEvent --> EntityEvent
+
+    IAsyncEvent --> PlayerChatEvent
+
+    EcsEvent --> CancellableEcsEvent
+
+    ICancellable --> ICancellableEcsEvent
 ```
 
 ## Player Events

@@ -222,44 +222,35 @@ BlockPhysics physics = chunkStore.getComponent(chunkRef, physicsType);
 
 ## Component Relationships
 
-### Transform and Chunk
+```mermaid
+flowchart LR
+    subgraph EntityStoreComponents["EntityStore Components"]
+        Transform["TransformComponent"]
+        TransformFields["position: Vector3d<br/>rotation: Vector3f<br/>chunkRef: Ref"]
 
-```
-TransformComponent (EntityStore)
-    │
-    ├── position: Vector3d
-    ├── rotation: Vector3f
-    └── chunkRef: Ref<ChunkStore> ──► WorldChunk (ChunkStore)
-```
+        Entity["Entity"]
+        EffectController["EffectControllerComponent<br/><i>List&lt;EntityEffect&gt;</i>"]
+        MovementStates["MovementStatesComponent<br/><i>movement flags</i>"]
+        Knockback["KnockbackComponent<br/><i>knockback state</i>"]
+    end
 
-### Entity and Effects
+    subgraph ChunkStoreComponents["ChunkStore Components"]
+        WorldChunk["WorldChunk"]
+        SpawnData["ChunkSpawnData<br/><i>spawn cooldown, state</i>"]
+        NPCData["ChunkSpawnedNPCData<br/><i>spawned NPC refs</i>"]
+        EntityChunk["EntityChunk<br/><i>entity refs in chunk</i>"]
+    end
 
-```
-Entity (EntityStore)
-    │
-    ├── EffectControllerComponent
-    │       └── List<EntityEffect>
-    │
-    ├── MovementStatesComponent
-    │       └── movement flags
-    │
-    └── KnockbackComponent
-            └── knockback state
-```
+    Transform --- TransformFields
+    TransformFields -->|"chunkRef"| WorldChunk
 
-### Chunk and Spawning
+    Entity --- EffectController
+    Entity --- MovementStates
+    Entity --- Knockback
 
-```
-WorldChunk (ChunkStore)
-    │
-    ├── ChunkSpawnData
-    │       └── spawn cooldown, state
-    │
-    ├── ChunkSpawnedNPCData
-    │       └── spawned NPC refs
-    │
-    └── EntityChunk
-            └── entity refs in chunk
+    WorldChunk --- SpawnData
+    WorldChunk --- NPCData
+    WorldChunk --- EntityChunk
 ```
 
 ## Component Summary

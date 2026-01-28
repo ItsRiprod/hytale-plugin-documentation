@@ -1,6 +1,8 @@
 // @ts-check
 import { defineConfig } from 'astro/config';
 import starlight from '@astrojs/starlight';
+import starlightImageZoom from 'starlight-image-zoom';
+import mermaid from 'astro-mermaid';
 
 // https://astro.build/config
 export default defineConfig({
@@ -17,6 +19,10 @@ export default defineConfig({
 	},
 
 	integrations: [
+		mermaid({
+			// Auto-switch dark/light based on site theme
+			autoTheme: true,
+		}),
 		starlight({
 			title: 'Hytale Server Modding',
 			description: 'AI-generated documentation for Hytale server plugin development, curated from decompiled source code analysis. Unofficial community resource.',
@@ -25,13 +31,47 @@ export default defineConfig({
 				src: './public/logo.svg',
 				alt: 'Hytale Server Modding',
 			},
-			// Disabled to reduce bundle size for Cloudflare Workers
-			// plugins: [starlightImageZoom(), starlightLinksValidator()],
+			components: {
+				ThemeSelect: './src/components/ThemeSelect.astro',
+			},
+			plugins: [
+				starlightImageZoom({
+					showCaptions: true
+				})
+			],
 			social: [
 				{ icon: 'github', label: 'GitHub', href: 'https://github.com/itsriprod/doctale' },
 			],
 			favicon: '/favicon.svg',
 			head: [
+				{
+					tag: 'script',
+					attrs: { 'is:inline': true },
+					content: `
+						(function() {
+							var stored = localStorage.getItem('starlight-theme');
+							if (stored) {
+								document.documentElement.setAttribute('data-theme', stored);
+							} else if (window.matchMedia('(prefers-color-scheme: light)').matches) {
+								document.documentElement.setAttribute('data-theme', 'light');
+							}
+						})();
+					`,
+				},
+				{
+					tag: 'script',
+					content: `
+						document.addEventListener('click', (e) => {
+							const mermaid = e.target.closest('.mermaid');
+							if (!mermaid) return;
+							if (document.fullscreenElement) {
+								document.exitFullscreen();
+							} else {
+								mermaid.requestFullscreen().catch(() => {});
+							}
+						});
+					`,
+				},
 				{
 					tag: 'link',
 					attrs: {
@@ -187,6 +227,7 @@ export default defineConfig({
 							collapsed: true,
 							items: [
 								{ label: 'Overview', slug: 'plugin-development/entities/overview' },
+								{ label: 'Targeting', slug: 'plugin-development/entities/targeting' },
 								{ label: 'Effects', slug: 'plugin-development/entities/effects' },
 								{ label: 'Groups', slug: 'plugin-development/entities/groups' },
 								{ label: 'Inventory', slug: 'plugin-development/entities/inventory' },
@@ -245,9 +286,15 @@ export default defineConfig({
 							collapsed: true,
 							items: [
 								{ label: 'Overview', slug: 'plugin-development/interactions/overview' },
-								{ label: 'Block Tracking', slug: 'plugin-development/interactions/block-tracking' },
-								{ label: 'Custom Interactions', slug: 'plugin-development/interactions/custom-interactions' },
+								{ label: 'Interaction Types', slug: 'plugin-development/interactions/interaction-types' },
+								{ label: 'Asset-Based Interactions', slug: 'plugin-development/interactions/asset-interactions' },
+								{ label: 'Interaction Lifecycle', slug: 'plugin-development/interactions/interaction-lifecycle' },
+								{ label: 'Client-Server Sync', slug: 'plugin-development/interactions/client-server-sync' },
+								{ label: 'Control Flow Patterns', slug: 'plugin-development/interactions/control-flow-interactions' },
+								{ label: 'Charging Mechanics', slug: 'plugin-development/interactions/charging-interactions' },
+								{ label: 'Charging Deep Dive', slug: 'plugin-development/interactions/charging-deep-dive' },
 								{ label: 'Java Operations', slug: 'plugin-development/interactions/java-operations' },
+								{ label: 'Block Tracking', slug: 'plugin-development/interactions/block-tracking' },
 							],
 						},
 						{
@@ -318,6 +365,7 @@ export default defineConfig({
 							collapsed: true,
 							items: [
 								{ label: 'Custom Weapon', slug: 'tutorials/examples/custom-weapon' },
+								{ label: 'Channeling Staff', slug: 'tutorials/examples/channeling-staff' },
 							],
 						},
 					],

@@ -6,10 +6,6 @@ title: "NPC Model Definitions"
 
 import { Aside, Tabs, TabItem, FileTree } from '@astrojs/starlight/components';
 
-<Aside type="caution" title="AI-Generated Content">
-This documentation was generated from analysis of decompiled source code and game assets. Some details may be incomplete or subject to change.
-</Aside>
-
 NPC model definitions configure the visual appearance, hitbox, animations, and camera behavior for NPCs. These server-side JSON files link to client-side `.blockymodel` and `.blockyanim` files.
 
 ## Asset Organization
@@ -397,41 +393,41 @@ NPCs can reference animations from other NPC types. In the bear example, the `Ea
 
 Standard animation organization:
 
-```
-NPC/[Category]/[NPC]/Animations/
-├── Default/
-│   ├── Idle.blockyanim
-│   ├── Walk.blockyanim
-│   ├── Walk_Backward.blockyanim
-│   ├── Run.blockyanim
-│   ├── Jump.blockyanim
-│   ├── Fall.blockyanim
-│   ├── Crouch.blockyanim
-│   ├── Crouch_Walk.blockyanim
-│   ├── Alerted.blockyanim
-│   ├── Spawn.blockyanim
-│   ├── Sleep.blockyanim
-│   ├── Laydown.blockyanim
-│   └── Wake.blockyanim
-├── Damage/
-│   ├── Hurt.blockyanim
-│   ├── Death.blockyanim
-│   ├── Hurt_Fly.blockyanim
-│   ├── Death_Fly.blockyanim
-│   └── ...
-├── Swim/
-│   ├── Swim_Idle.blockyanim
-│   ├── Swim.blockyanim
-│   └── ...
-├── Fly/
-│   ├── Fly_Idle.blockyanim
-│   ├── Fly.blockyanim
-│   └── ...
-└── Flavor/
-    ├── Roar.blockyanim
-    ├── Eat.blockyanim
-    └── ...
-```
+<FileTree>
+- NPC/[Category]/[NPC]/Animations/
+  - Default/
+    - Idle.blockyanim
+    - Walk.blockyanim
+    - Walk_Backward.blockyanim
+    - Run.blockyanim
+    - Jump.blockyanim
+    - Fall.blockyanim
+    - Crouch.blockyanim
+    - Crouch_Walk.blockyanim
+    - Alerted.blockyanim
+    - Spawn.blockyanim
+    - Sleep.blockyanim
+    - Laydown.blockyanim
+    - Wake.blockyanim
+  - Damage/
+    - Hurt.blockyanim
+    - Death.blockyanim
+    - Hurt_Fly.blockyanim
+    - Death_Fly.blockyanim
+    - ...
+  - Swim/
+    - Swim_Idle.blockyanim
+    - Swim.blockyanim
+    - ...
+  - Fly/
+    - Fly_Idle.blockyanim
+    - Fly.blockyanim
+    - ...
+  - Flavor/
+    - Roar.blockyanim
+    - Eat.blockyanim
+    - ...
+</FileTree>
 
 ## Creating Custom NPCs
 

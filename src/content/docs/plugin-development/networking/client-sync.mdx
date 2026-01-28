@@ -18,24 +18,20 @@ The client synchronization system replicates server state to connected clients. 
 
 ## Architecture Overview
 
-```
-┌─────────────────────────────────────────────────────────────────┐
-│                  Synchronization Pipeline                       │
-│                                                                 │
-│  ┌──────────────┐    ┌──────────────┐    ┌──────────────────┐   │
-│  │ State Change │───►│ Visibility   │───►│ Queue Updates    │   │
-│  │ (Component)  │    │ Detection    │    │ (Delta Encoding) │   │
-│  └──────────────┘    └──────────────┘    └────────┬─────────┘   │
-│                                                    │            │
-│                                          ┌─────────▼─────────┐  │
-│                                          │   SendPackets     │  │
-│                                          │   (Batch Send)    │  │
-│                                          └─────────┬─────────┘  │
-│                                                    │            │
-│                                          ┌─────────▼─────────┐  │
-│                                          │     Client        │  │
-│                                          └───────────────────┘  │
-└─────────────────────────────────────────────────────────────────┘
+```mermaid
+flowchart TB
+    subgraph Pipeline["Synchronization Pipeline"]
+        StateChange["State Change<br/>(Component)"]
+        Visibility["Visibility<br/>Detection"]
+        QueueUpdates["Queue Updates<br/>(Delta Encoding)"]
+        SendPackets["Send Packets<br/>(Batch Send)"]
+        Client["Client"]
+
+        StateChange --> Visibility
+        Visibility --> QueueUpdates
+        QueueUpdates --> SendPackets
+        SendPackets --> Client
+    end
 ```
 
 ## Entity Synchronization

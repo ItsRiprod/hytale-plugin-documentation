@@ -22,38 +22,41 @@ Hytale uses an Entity Component System architecture for managing game entities, 
 
 ### ECS Architecture
 
-```
-┌─────────────────────────────────────────────────────────────────┐
-│                           Store                                 │
-│  ┌──────────────────────────────────────────────────────────┐   │
-│  │                     Entities (Refs)                      │   │
-│  │  ┌─────────┐ ┌─────────┐ ┌─────────┐ ┌─────────┐         │   │
-│  │  │ Entity  │ │ Entity  │ │ Entity  │ │ Entity  │   ...   │   │
-│  │  │  Ref 0  │ │  Ref 1  │ │  Ref 2  │ │  Ref 3  │         │   │
-│  │  └────┬────┘ └────┬────┘ └────┬────┘ └────┬────┘         │   │
-│  └───────│───────────│───────────│───────────│──────────────┘   │
-│          ▼           ▼           ▼           ▼                  │
-│  ┌──────────────────────────────────────────────────────────┐   │
-│  │                   Components (Data)                      │   │
-│  │  ┌──────────┐ ┌──────────┐ ┌──────────┐ ┌──────────┐     │   │
-│  │  │Position  │ │Velocity  │ │ Health   │ │Inventory │ ... │   │
-│  │  └──────────┘ └──────────┘ └──────────┘ └──────────┘     │   │
-│  └──────────────────────────────────────────────────────────┘   │
-│                                                                 │
-│  ┌──────────────────────────────────────────────────────────┐   │
-│  │                   Resources (World Data)                 │   │
-│  │  ┌──────────┐ ┌──────────┐ ┌──────────┐                  │   │
-│  │  │TimeOfDay │ │Weather   │ │GameRules │       ...        │   │
-│  │  └──────────┘ └──────────┘ └──────────┘                  │   │
-│  └──────────────────────────────────────────────────────────┘   │
-│                                                                 │
-│  ┌──────────────────────────────────────────────────────────┐   │
-│  │                   Systems (Logic)                        │   │
-│  │  ┌──────────┐ ┌──────────┐ ┌──────────┐ ┌──────────┐     │   │
-│  │  │ Physics  │ │   AI     │ │ Combat   │ │ Weather  │ ... │   │
-│  │  └──────────┘ └──────────┘ └──────────┘ └──────────┘     │   │
-│  └──────────────────────────────────────────────────────────┘   │
-└─────────────────────────────────────────────────────────────────┘
+```mermaid
+flowchart TB
+    subgraph Store
+        subgraph Entities["Entities (Refs)"]
+            E0["Entity Ref 0"]
+            E1["Entity Ref 1"]
+            E2["Entity Ref 2"]
+            E3["Entity Ref 3"]
+        end
+
+        subgraph Components["Components (Data)"]
+            Position
+            Velocity
+            Health
+            Inventory
+        end
+
+        subgraph Resources["Resources (World Data)"]
+            TimeOfDay
+            Weather
+            GameRules
+        end
+
+        subgraph Systems["Systems (Logic)"]
+            Physics
+            AI
+            Combat
+            WeatherSys["Weather"]
+        end
+    end
+
+    E0 --> Position
+    E1 --> Velocity
+    E2 --> Health
+    E3 --> Inventory
 ```
 
 ### Key Terminology

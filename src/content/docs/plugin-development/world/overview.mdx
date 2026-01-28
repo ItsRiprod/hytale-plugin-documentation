@@ -20,28 +20,28 @@ The World System manages the game universe, individual worlds, chunks, blocks, a
 
 ## Architecture
 
-```
-┌─────────────────────────────────────────────────────────────────┐
-│                          Universe                                │
-│  ┌────────────────────────────────────────────────────────────┐ │
-│  │                        Worlds                               │ │
-│  │  ┌───────────────┐  ┌───────────────┐  ┌───────────────┐   │ │
-│  │  │ default       │  │ nether        │  │ custom        │   │ │
-│  │  │ ┌───────────┐ │  │ ┌───────────┐ │  │ ┌───────────┐ │   │ │
-│  │  │ │EntityStore│ │  │ │EntityStore│ │  │ │EntityStore│ │   │ │
-│  │  │ └───────────┘ │  │ └───────────┘ │  │ └───────────┘ │   │ │
-│  │  │ ┌───────────┐ │  │ ┌───────────┐ │  │ ┌───────────┐ │   │ │
-│  │  │ │ChunkStore │ │  │ │ChunkStore │ │  │ │ChunkStore │ │   │ │
-│  │  │ └───────────┘ │  │ └───────────┘ │  │ └───────────┘ │   │ │
-│  │  │ ┌───────────┐ │  │ ┌───────────┐ │  │ ┌───────────┐ │   │ │
-│  │  │ │  Chunks   │ │  │ │  Chunks   │ │  │ │  Chunks   │ │   │ │
-│  │  │ └───────────┘ │  │ └───────────┘ │  │ └───────────┘ │   │ │
-│  │  └───────────────┘  └───────────────┘  └───────────────┘   │ │
-│  └────────────────────────────────────────────────────────────┘ │
-│  ┌────────────────────────────────────────────────────────────┐ │
-│  │                     Player Storage                          │ │
-│  └────────────────────────────────────────────────────────────┘ │
-└─────────────────────────────────────────────────────────────────┘
+```mermaid
+flowchart TB
+    subgraph Universe
+        subgraph Worlds
+            subgraph Default["default"]
+                D_ES[EntityStore]
+                D_CS[ChunkStore]
+                D_C[Chunks]
+            end
+            subgraph Nether["nether"]
+                N_ES[EntityStore]
+                N_CS[ChunkStore]
+                N_C[Chunks]
+            end
+            subgraph Custom["custom"]
+                C_ES[EntityStore]
+                C_CS[ChunkStore]
+                C_C[Chunks]
+            end
+        end
+        PS[Player Storage]
+    end
 ```
 
 ## Universe
@@ -322,13 +322,17 @@ getEventRegistry().register(DrainPlayerFromWorldEvent.class, event -> {
 
 Chunks are 16x256x16 block columns divided into 16x16x16 sections:
 
-```
-Chunk Column (16 x 256 x 16)
-├── Section 0  (y: 0-15)
-├── Section 1  (y: 16-31)
-├── Section 2  (y: 32-47)
-│   ...
-└── Section 15 (y: 240-255)
+```mermaid
+flowchart TB
+    subgraph Chunk["Chunk Column (16 x 256 x 16)"]
+        S0["Section 0 (y: 0-15)"]
+        S1["Section 1 (y: 16-31)"]
+        S2["Section 2 (y: 32-47)"]
+        SD["..."]
+        S15["Section 15 (y: 240-255)"]
+    end
+
+    S0 --> S1 --> S2 --> SD --> S15
 ```
 
 ### Chunk Coordinates

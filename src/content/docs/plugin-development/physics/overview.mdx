@@ -19,24 +19,26 @@ The Physics System handles entity movement, collision detection, and physical si
 
 ## Architecture
 
-```
-┌─────────────────────────────────────────────────────────────────┐
-│                      Physics System                             │
-│                                                                 │
-│  ┌──────────────┐  ┌──────────────┐  ┌────────────────────────┐ │
-│  │  Velocity    │  │  Collision   │  │  Hitbox                │ │
-│  │  Component   │  │  Module      │  │  Component             │ │
-│  └──────┬───────┘  └──────┬───────┘  └────────────┬───────────┘ │
-│         │                 │                       │             │
-│         ▼                 ▼                       ▼             │
-│  ┌──────────────────────────────────────────────────────────┐   │
-│  │              Physics Provider / Systems                  │   │
-│  │  ┌─────────┐  ┌─────────┐  ┌─────────┐  ┌─────────────┐  │   │
-│  │  │ Force   │  │Collision│  │Movement │  │  Response   │  │   │
-│  │  │ Accum.  │  │Detection│  │ Update  │  │  Handling   │  │   │
-│  │  └─────────┘  └─────────┘  └─────────┘  └─────────────┘  │   │
-│  └──────────────────────────────────────────────────────────┘   │
-└─────────────────────────────────────────────────────────────────┘
+```mermaid
+flowchart TB
+    subgraph Physics["Physics System"]
+        subgraph Components["Components"]
+            Velocity["Velocity<br/>Component"]
+            Collision["Collision<br/>Module"]
+            Hitbox["Hitbox<br/>Component"]
+        end
+
+        subgraph Provider["Physics Provider / Systems"]
+            Force["Force<br/>Accum."]
+            Detection["Collision<br/>Detection"]
+            Movement["Movement<br/>Update"]
+            Response["Response<br/>Handling"]
+        end
+    end
+
+    Velocity --> Provider
+    Collision --> Provider
+    Hitbox --> Provider
 ```
 
 ## Core Components
